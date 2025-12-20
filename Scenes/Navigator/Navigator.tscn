@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://ditcs0wgmxhhf"]
+
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_lgafj"]
+[ext_resource type="Script" uid="uid://dxndnts0hbgsl" path="res://Scenes/Navigator/Navigator.gd" id="1_r7nnm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lgafj"]
+load_path = "res://.godot/imported/FT_sprites_6x.png-c6e248d03835ca85888ecdf616c11cdf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aplcp"]
+atlas = SubResource("CompressedTexture2D_lgafj")
+region = Rect2(0, 0, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7nnm"]
+atlas = SubResource("CompressedTexture2D_lgafj")
+region = Rect2(108, 0, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piwsc"]
+atlas = ExtResource("1_lgafj")
+region = Rect2(216, 0, 102, 102)
+
+[node name="Navigator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r7nnm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -71.99994
+offset_right = 536.0
+offset_bottom = 30.000061
+grow_vertical = 0
+scale = Vector2(0.65, 0.65)
+theme_override_constants/separation = 40
+
+[node name="DashboardButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_aplcp")
+
+[node name="TrackerButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_r7nnm")
+
+[node name="HistoryButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_piwsc")
+
+[node name="InstructionButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_r7nnm")
+
+[connection signal="pressed" from="HBoxContainer/DashboardButton" to="." method="_on_dashboard_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TrackerButton" to="." method="_on_tracker_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/HistoryButton" to="." method="_on_history_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/InstructionButton" to="." method="_on_instruction_button_pressed"]

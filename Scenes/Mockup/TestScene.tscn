@@ -1,0 +1,160 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce1urape886k5"]
+
+[ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_5lt6y"]
+[ext_resource type="Texture2D" uid="uid://b0725loac8rb8" path="res://Assets/Sprites/FT_sprites.png" id="1_b5ayd"]
+[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_10_blue.tres" id="3_8k7wh"]
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="4_0f5h7"]
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="4_iufkg"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(181, 325)
+texture = ExtResource("1_5lt6y")
+region_rect = Rect2(61, 1, 32, 24)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = 22.0
+offset_right = 342.0
+offset_bottom = 195.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(61, 1, 32, 24)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = 223.0
+offset_right = 342.0
+offset_bottom = 396.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(61, 1, 32, 24)
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+offset_left = 44.0
+offset_top = 258.0
+offset_right = 184.0
+offset_bottom = 295.0
+text = "Start: 2025-11-04
+End: 2026-01-04"
+label_settings = ExtResource("3_8k7wh")
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+offset_left = 165.0
+offset_top = 338.0
+offset_right = 309.0
+offset_bottom = 361.0
+text = "Target: $9999999"
+label_settings = ExtResource("3_8k7wh")
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 302.0
+offset_top = 7.0
+offset_right = 357.0
+offset_bottom = 62.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(2, 43, 7, 7)
+
+[node name="NinePatchRect5" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 302.0
+offset_top = 208.0
+offset_right = 357.0
+offset_bottom = 263.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(2, 43, 7, 7)
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+offset_left = 22.0
+offset_top = 570.0
+offset_right = 87.0
+offset_bottom = 635.0
+texture = ExtResource("4_0f5h7")
+region_rect = Rect2(0, 0, 102, 102)
+
+[node name="NinePatchRect6" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 111.0
+offset_top = 570.0
+offset_right = 176.0
+offset_bottom = 635.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(18, 0, 17, 17)
+
+[node name="NinePatchRect7" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 196.0
+offset_top = 570.0
+offset_right = 261.0
+offset_bottom = 635.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(36, 0, 17, 17)
+
+[node name="NinePatchRect8" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 279.0
+offset_top = 570.0
+offset_right = 344.0
+offset_bottom = 635.0
+texture = ExtResource("1_b5ayd")
+region_rect = Rect2(0, 18, 17, 17)
+
+[node name="NinePatchRect9" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 418.0
+offset_top = 63.0
+offset_right = 1042.0
+offset_bottom = 498.0
+texture = ExtResource("4_iufkg")
+patch_margin_left = 160
+patch_margin_top = 99
+patch_margin_right = 61
+patch_margin_bottom = 99
+
+[node name="NinePatchRect10" type="NinePatchRect" parent="."]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 352.0
+offset_bottom = 215.0
+texture = ExtResource("4_iufkg")
+region_rect = Rect2(0, 0, 192, 144)
+patch_margin_left = 158
+patch_margin_top = 106
+patch_margin_right = 112
+patch_margin_bottom = 99
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 28.0
+offset_bottom = 16.0
+text = "Hello"
+label_settings = ExtResource("3_8k7wh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 25.0
+offset_right = 259.0
+offset_bottom = 102.0
+text = "Start: 2025-11-04
+End: 2026-01-04
+Type: CD
+RATE: 4.15%"
+label_settings = ExtResource("3_8k7wh")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 83.0
+offset_top = 119.0
+offset_right = 318.0
+offset_bottom = 196.0
+text = "Amount: $5000
+Actual: $4980
+Earned: #33.0
+Final Value: $5033"
+label_settings = ExtResource("3_8k7wh")
+horizontal_alignment = 2
