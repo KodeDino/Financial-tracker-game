@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch6s6l436ibh4"]
+
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_ea8c5"]
+[ext_resource type="Script" uid="uid://bgcaehjhb5lc5" path="res://Scenes/DashboardValueCard/DashboardValueCard.gd" id="2_q2bea"]
+[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_10_blue.tres" id="2_qb5nf"]
+
+[node name="DashboardValueCard" type="NinePatchRect"]
+offset_right = 360.0
+offset_bottom = 112.0
+texture = ExtResource("1_ea8c5")
+patch_margin_left = 78
+patch_margin_top = 18
+patch_margin_right = 30
+patch_margin_bottom = 18
+script = ExtResource("2_q2bea")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 20.0
+offset_right = 94.0
+offset_bottom = 37.0
+text = "Title"
+label_settings = ExtResource("2_qb5nf")
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 20.0
+offset_right = 295.0
+offset_bottom = 37.0
+text = "00000"
+label_settings = ExtResource("2_qb5nf")
