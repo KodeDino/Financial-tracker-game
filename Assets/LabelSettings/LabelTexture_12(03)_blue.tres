@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bhrekk4kqedp6"]
+
+[ext_resource type="FontFile" uid="uid://cw6m0wpmw5dvd" path="res://Assets/Fonts/04B_03__.TTF" id="1_mgb6r"]
+
+[resource]
+font = ExtResource("1_mgb6r")
+font_size = 12
+font_color = Color(0, 0.27416673, 0.47, 1)

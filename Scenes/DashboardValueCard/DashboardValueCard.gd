@@ -10,4 +10,4 @@ extends NinePatchRect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	title.text = title_param
-	value.text = value_param
+	value.text = '$' + value_param

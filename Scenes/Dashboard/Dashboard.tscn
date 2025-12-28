@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://g6s6plaeu4e"]
+[gd_scene load_steps=6 format=3 uid="uid://g6s6plaeu4e"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_q7pta"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="2_h3w4h"]
 [ext_resource type="PackedScene" uid="uid://bvwvycdce4y0d" path="res://Scenes/ProgressCard/ProgressCard.tscn" id="4_aa0xx"]
 [ext_resource type="PackedScene" uid="uid://ch6s6l436ibh4" path="res://Scenes/DashboardValueCard/DashboardValueCard.tscn" id="4_hdu7h"]
+[ext_resource type="PackedScene" uid="uid://d2ex30crq0gbu" path="res://Scenes/UpcomingMaturityCard/UpcomingMaturity.tscn" id="5_aa0xx"]
 
 [node name="Dashboard" type="Control"]
 layout_mode = 3
@@ -58,3 +59,10 @@ offset_left = 8.0
 offset_top = 208.0
 offset_right = 352.0
 offset_bottom = 360.0
+
+[node name="UpcomingMaturity" parent="." instance=ExtResource("5_aa0xx")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 368.0
+offset_right = 352.0
+offset_bottom = 576.0

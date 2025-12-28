@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch6s6l436ibh4"]
+[gd_scene load_steps=6 format=3 uid="uid://ch6s6l436ibh4"]
 
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_ea8c5"]
 [ext_resource type="Script" uid="uid://bgcaehjhb5lc5" path="res://Scenes/DashboardValueCard/DashboardValueCard.gd" id="2_q2bea"]
-[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_10_blue.tres" id="2_qb5nf"]
+[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_16_blue.tres" id="2_qb5nf"]
+[ext_resource type="FontFile" uid="uid://cw6m0wpmw5dvd" path="res://Assets/Fonts/04B_03__.TTF" id="4_q2bea"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v464k"]
+font = ExtResource("4_q2bea")
+font_size = 19
+font_color = Color(0, 0.27416673, 0.47, 1)
 
 [node name="DashboardValueCard" type="NinePatchRect"]
 offset_right = 360.0
@@ -25,9 +31,9 @@ label_settings = ExtResource("2_qb5nf")
 
 [node name="Value" type="Label" parent="."]
 layout_mode = 0
-offset_left = 220.0
-offset_top = 20.0
-offset_right = 295.0
-offset_bottom = 37.0
-text = "00000"
-label_settings = ExtResource("2_qb5nf")
+offset_left = 242.0
+offset_top = 21.0
+offset_right = 317.0
+offset_bottom = 41.0
+text = "$00000"
+label_settings = SubResource("LabelSettings_v464k")

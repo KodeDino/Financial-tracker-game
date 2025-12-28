@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmhpiel1ax4rp"]
+
+[ext_resource type="Script" uid="uid://b8r44k1jluln4" path="res://Scenes/InvestmentCard/InvestmentCard.gd" id="1_ap64o"]
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_ck5yc"]
+[ext_resource type="LabelSettings" uid="uid://f7nhtsmlouiu" path="res://Assets/LabelSettings/LabelTexture24(03)_blue.tres" id="4_ck5yc"]
+[ext_resource type="LabelSettings" uid="uid://bhrekk4kqedp6" path="res://Assets/LabelSettings/LabelTexture_12(03)_blue.tres" id="4_vffqt"]
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="5_581gk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vffqt"]
+atlas = ExtResource("5_581gk")
+region = Rect2(12, 258, 42, 42)
+
+[node name="InvestmentCard" type="NinePatchRect"]
+offset_top = 12.0
+offset_right = 328.0
+offset_bottom = 202.0
+texture = ExtResource("1_ck5yc")
+patch_margin_left = 128
+patch_margin_top = 68
+patch_margin_right = 65
+patch_margin_bottom = 77
+script = ExtResource("1_ap64o")
+isActive = true
+
+[node name="GeneralInfoGrid" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 130.0
+offset_bottom = 84.0
+columns = 2
+
+[node name="StartDateLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "Start"
+label_settings = ExtResource("4_vffqt")
+
+[node name="StartDateValueLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "2025-11-04"
+label_settings = ExtResource("4_vffqt")
+
+[node name="EndDateLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "End"
+label_settings = ExtResource("4_vffqt")
+
+[node name="EndDateValueLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "2026-01-04"
+label_settings = ExtResource("4_vffqt")
+
+[node name="TypeLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "Type"
+label_settings = ExtResource("4_vffqt")
+
+[node name="TypeValueLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "CD"
+label_settings = ExtResource("4_vffqt")
+
+[node name="RateLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "Rate"
+label_settings = ExtResource("4_vffqt")
+
+[node name="RateValueLabel" type="Label" parent="GeneralInfoGrid"]
+layout_mode = 2
+text = "4.15%"
+label_settings = ExtResource("4_vffqt")
+
+[node name="AmountInfoGrid" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 60.0
+offset_right = 297.0
+offset_bottom = 168.0
+columns = 2
+
+[node name="AmountLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "Amount"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="AmountValueLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "$5000"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="ActualLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "Actual"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="ActualValueLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "$4980"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="EarnedLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "Earned"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="EarnedValueLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "$33.0"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="FinalLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "Final"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="FinalValueLabel" type="Label" parent="AmountInfoGrid"]
+layout_mode = 2
+text = "$5033"
+label_settings = ExtResource("4_ck5yc")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 298.0
+offset_top = -12.0
+offset_right = 340.0
+offset_bottom = 30.0
+texture_normal = SubResource("AtlasTexture_vffqt")

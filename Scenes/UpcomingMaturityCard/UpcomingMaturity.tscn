@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ex30crq0gbu"]
+
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_55n45"]
+[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_16_blue.tres" id="2_bqvfo"]
+[ext_resource type="LabelSettings" uid="uid://bhrekk4kqedp6" path="res://Assets/LabelSettings/LabelTexture_12(03)_blue.tres" id="3_pb2v7"]
+
+[node name="UpcomingMaturity" type="NinePatchRect"]
+offset_right = 344.0
+offset_bottom = 208.0
+texture = ExtResource("1_55n45")
+patch_margin_left = 96
+patch_margin_top = 57
+patch_margin_right = 50
+patch_margin_bottom = 57
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 235.0
+offset_bottom = 47.0
+text = "Upcoming Maturity"
+label_settings = ExtResource("2_bqvfo")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 323.0
+offset_bottom = 96.0
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="MaturityDateLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Maturity Date"
+label_settings = ExtResource("3_pb2v7")
+
+[node name="TypeLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Type"
+label_settings = ExtResource("3_pb2v7")
+
+[node name="MaturedValueLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Matured Value"
+label_settings = ExtResource("3_pb2v7")
+
+[node name="DummyLabelDate" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "2025-11-01"
+label_settings = ExtResource("3_pb2v7")
+
+[node name="DummyLabelType" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "CD"
+label_settings = ExtResource("3_pb2v7")
+
+[node name="DummyLabelValue" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "$ 5001.32"
+label_settings = ExtResource("3_pb2v7")

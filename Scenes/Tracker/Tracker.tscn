@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://by278ayxqjxf5"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_0am6p"]
-[ext_resource type="LabelSettings" uid="uid://ckd5g5ln4x27y" path="res://Assets/LabelSettings/Dummy_label.tres" id="2_m62ni"]
+[ext_resource type="PackedScene" uid="uid://bmhpiel1ax4rp" path="res://Scenes/InvestmentCard/InvestmentCard.tscn" id="3_b72r1"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_m62ni"]
 
 [node name="Tracker" type="Control"]
@@ -21,12 +21,13 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0am6p")
 
-[node name="DummyLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Tracker"
-label_settings = ExtResource("2_m62ni")
-
 [node name="Navigator" parent="." instance=ExtResource("3_m62ni")]
 layout_mode = 1
+
+[node name="InvestmentCard" parent="." instance=ExtResource("3_b72r1")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 344.0
+offset_bottom = 206.0
+isActive = false

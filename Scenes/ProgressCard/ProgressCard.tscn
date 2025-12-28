@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvwvycdce4y0d"]
+[gd_scene load_steps=8 format=3 uid="uid://bvwvycdce4y0d"]
 
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_81bda"]
 [ext_resource type="Script" uid="uid://btassneybilem" path="res://Scenes/ProgressCard/ProgressCard.gd" id="2_phcle"]
 [ext_resource type="PackedScene" uid="uid://bqcb2q6gvjihm" path="res://Scenes/ProgressBar/TextureProgressBar.tscn" id="3_rlami"]
-[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_10_blue.tres" id="4_0m5tf"]
+[ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_16_blue.tres" id="4_0m5tf"]
 [ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="5_lp6u1"]
+[ext_resource type="LabelSettings" uid="uid://cdvyd5tsl4q8k" path="res://Assets/LabelSettings/LabelTexture_12_blue.tres" id="5_rlami"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s2qr"]
 atlas = ExtResource("5_lp6u1")
@@ -27,6 +28,7 @@ offset_left = 24.0
 offset_top = 96.0
 offset_right = 318.0
 offset_bottom = 120.0
+value = 10.0
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
@@ -44,7 +46,7 @@ offset_top = 120.0
 offset_right = 72.0
 offset_bottom = 143.0
 text = "10%"
-label_settings = ExtResource("4_0m5tf")
+label_settings = ExtResource("5_rlami")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
