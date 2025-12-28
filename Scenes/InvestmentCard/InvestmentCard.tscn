@@ -11,6 +11,7 @@ atlas = ExtResource("5_581gk")
 region = Rect2(12, 258, 42, 42)
 
 [node name="InvestmentCard" type="NinePatchRect"]
+custom_minimum_size = Vector2(320, 190)
 offset_top = 12.0
 offset_right = 328.0
 offset_bottom = 202.0
