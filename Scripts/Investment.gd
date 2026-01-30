@@ -9,6 +9,24 @@ extends Resource
 # only for tBill type
 @export var actual_cost: float
 
+func to_dict() -> Dictionary:
+	return {
+		"start_date": start_date,
+		"type": type,
+		"rate": rate,
+		"amount": amount,
+		"actual_cost": actual_cost
+	  }
+	
+static func from_dict(dict: Dictionary) -> Investment:
+	var investment = Investment.new()
+	investment.start_date = dict.get("start_date", "")
+	investment.type = dict.get("type", "")
+	investment.rate = dict.get("rate", 0.0)
+	investment.amount = dict.get("amount", 0.0)
+	investment.actual_cost = dict.get("actual_cost", 0.0)
+	return investment
+
 func get_interest_earned() -> float:
 	if type == "cd" && rate:
 		return amount * (rate / 100) * (3.0 / 12.0)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://by278ayxqjxf5"]
+[gd_scene load_steps=5 format=3 uid="uid://by278ayxqjxf5"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_0am6p"]
+[ext_resource type="Script" uid="uid://cqtrfkjku2nc0" path="res://Scenes/Tracker/Tracker.gd" id="1_b72r1"]
 [ext_resource type="PackedScene" uid="uid://bmhpiel1ax4rp" path="res://Scenes/InvestmentCard/InvestmentCard.tscn" id="3_b72r1"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_m62ni"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_b72r1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -54,8 +56,6 @@ layout_mode = 2
 
 [node name="InvestmentCard3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
 layout_mode = 2
-isActive = false
 
 [node name="InvestmentCard4" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
 layout_mode = 2
-isActive = false

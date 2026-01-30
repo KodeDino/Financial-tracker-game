@@ -21,7 +21,6 @@ patch_margin_top = 68
 patch_margin_right = 65
 patch_margin_bottom = 77
 script = ExtResource("1_ap64o")
-isActive = true
 
 [node name="GeneralInfoGrid" type="GridContainer" parent="."]
 layout_mode = 0
