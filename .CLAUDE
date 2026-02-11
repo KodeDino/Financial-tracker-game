@@ -1,0 +1,279 @@
+# Financial Tracker - Godot Mobile Game
+
+## Project Overview
+
+Converting existing financial tracker web app into a Godot mobile game with custom pixel art UI.
+
+### Key Decisions
+
+- Platform: Godot (instead of WeChat Mini Program)
+- Storage: Local save data only (using Godot's FileAccess system, no backend)
+- UI Style: Custom pixelated assets for game-like feel (not using built-in Godot UI components)
+- Complexity: Simpler than previous basketball game - mainly UI screens and data management
+
+### Core Features
+
+- Goal tracking & progress visualization
+- Investment/transaction logging (CDs, T-bills, etc.)
+- Save/load system
+- Four main screens: Dashboard, Tracker, History, Instruction
+
+### UI Design
+
+- Color scheme: Dark blue/teal with pixel art style
+- Bottom navigation: 4 circular buttons for main screens
+- Card-based layout for investments/goals
+- See: Assets/mockup.png for full design reference
+
+---
+
+## Progress Log
+
+### 2025-12-25 (Previous Session - Reconstructed)
+
+**Completed:**
+
+- ✓ Project setup (commit: 69ed230)
+- ✓ Navigator scene with 4 bottom navigation buttons
+- ✓ Created four main placeholder scenes: Dashboard, Tracker, History, Instruction (commit: b920a36)
+- ✓ Added mockup.png design reference to Assets/
+
+**Current State:**
+
+- Navigator functional with scene switching
+- Each main scene is a placeholder, needs implementation
+
+**Next Steps:**
+
+- Implement Dashboard scene (stats: TPV/TPC/TIE => Totoal Portfolio Value, Total Principal Contributed, Total Interest Earned, progress bar, upcoming maturity table)
+- Create reusable card component for Tracker/History
+- Design data structures for investments/goals
+- Implement save/load system
+
+---
+
+### 2025-12-26
+
+**Completed:**
+
+- ✓ Created .CLAUDE file for progress tracking
+- ✓ Implemented ProgressBar scene using TextureProgressBar (Scenes/ProgressBar/TextureProgressBar.tscn)
+  - Used AtlasTexture to extract progress bar sprites from FT_sprites_6x.png
+  - Configured texture_under (light orange background) and texture_progress (dark orange fill)
+  - Set up nine-patch stretching for scalability
+- ✓ Created ProgressCard scene (Scenes/ProgressCard/ProgressCard.tscn)
+  - Used NinePatchRect container with card background
+  - Integrated TextureProgressBar instance
+  - Added title label, percentage label, and cancel button
+  - Created ProgressCard.gd script with basic label setup
+- ✓ Researched table implementation options for maturity table card
+  - Decided on GridContainer approach (most conventional for game UI tables)
+
+**Current State:**
+
+- Dashboard components: DashboardValueCard ✓, ProgressCard ✓
+- Still need: Maturity Table Card (will use GridContainer)
+
+**Next Steps:**
+
+- Create MaturityTableCard scene with GridContainer (3 columns: Date, Type, Value)
+- Assemble all components into Dashboard scene
+- Add logic for data binding and updates
+- Design data structures for investments/goals
+
+---
+
+### 2025-12-27
+
+**Completed:**
+
+- ✓ Created UpcomingMaturity scene (Scenes/UpcomingMaturityCard/UpcomingMaturity.tscn)
+  - Used NinePatchRect container with Card.png background
+  - Implemented GridContainer with 3 columns: Maturity Date, Type, Matured Value
+  - Added header row and one dummy data row
+  - Set up spacing: h_separation=50, v_separation=10
+  - Used LabelTexture_12(03)_blue label settings for consistent styling
+- ✓ Reviewed React financial tracker app architecture (/Users/xiyuchen/Documents/Xiyu/Workspace/web_application/financial-tracker-app)
+  - Confirmed data flow: Tracker page (CRUD operations) → Dashboard (display aggregated data)
+  - Dashboard shows: PanelSection (TPV/TPC/TIE), ProgressBar, MaturityDetails
+  - Tracker shows: Full investment table with CreateInvestment and InvestmentDelete components
+- ✓ Created InvestmentCard scene (Scenes/InvestmentCard/InvestmentCard.tscn)
+  - NinePatchRect root with Card.png background
+  - GeneralInfoGrid (2 columns): Start Date, End Date, Type, Rate
+  - AmountInfoGrid (2 columns): Amount, Actual Cost, Earned, Final Value
+  - TextureButton in top-right corner (for delete functionality)
+  - InvestmentCard.gd script with isActive logic
+  - Preloads CARD_ACTIVE and CARD_INACTIVE textures
+  - Simple @export var isActive: bool for testing (will be replaced with date comparison logic later)
+
+**Key Discussions:**
+
+- UI approach difference between Dashboard and Tracker:
+  - **Dashboard upcoming maturity**: Simple GridContainer table (just built)
+  - **Tracker page**: Card-based layout - each investment gets its own card
+  - Reason: More game-like, visual, and mobile-friendly than traditional tables
+- Data flow confirmed: Tracker page is the source of truth for investment data
+  - Dashboard reads and displays computed/aggregated views
+  - Makes sense to build Tracker page functionality first
+- Scrollable container: Use **ScrollContainer** with VBoxContainer/VBoxContainer child
+  - ScrollContainer handles overflow and scrollbars automatically
+  - VBoxContainer stacks InvestmentCard instances vertically
+
+**Next Steps:**
+
+- Create Tracker scene with ScrollContainer to hold multiple InvestmentCard instances
+  - Structure: Tracker → ScrollContainer → VBoxContainer → InvestmentCards
+  - Configure scroll settings (vertical only, auto scrollbars)
+- Implement logic to dynamically add/populate InvestmentCard instances
+- Define data structures for investments (Dictionary or custom class)
+- Add create new investment functionality
+- Add delete investment functionality (wire up TextureButton)
+- Implement save/load system using Godot's FileAccess
+- Update InvestmentCard to calculate isActive from maturity date vs current date
+- Wire up Dashboard to display data from saved investments
+
+---
+
+### 2025-12-28
+
+**Completed:**
+
+- ✓ Fixed Tracker scene layout issue - moved TextureRect (background) above ScrollContainer so cards are visible
+- ✓ Set up InvestmentCard with custom_minimum_size in VBoxContainer for proper sizing
+- ✓ Decided on data structure approach: **Custom Class (Investment extends Resource)** over Dictionary
+  - Rationale: Type safety, autocomplete, computed properties, easier maintenance
+- ✓ Created Scripts/ folder for project organization
+- ✓ Implemented Investment.gd resource class (Scripts/Investment.gd)
+  - @export properties: start_date, type, rate, amount, actual_cost
+  - Removed end_date from properties (now computed via get_end_date() method)
+  - Computed methods:
+    - `get_interest_earned()` - Calculates interest: CD uses rate formula, T-Bill uses discount (amount - actual_cost)
+    - `get_matured_value()` - Returns final value: CD = amount + interest, T-Bill = amount (face value)
+    - `get_status()` - Checks if investment is active by comparing current date with end_date
+    - `get_end_date()` - Calculates maturity date (start_date + 3 months)
+  - Used Godot's Time API: get_datetime_dict_from_datetime_string(), get_datetime_string_from_datetime_dict()
+- ✓ Reviewed React financial tracker form structure to understand:
+  - User inputs: start_date, type (CD/T-Bill), amount/face_value, rate/actual_cost
+  - CD fields: Amount ($) and Rate (%)
+  - T-Bill fields: Face Value ($) and Actual Cost ($)
+  - End date auto-calculated as start_date + 3 months
+  - All investments default to 3-month term
+
+**Key Learnings:**
+
+- String comparison works for "YYYY-MM-DD" date format in GDScript
+- Time.get_datetime_string_from_datetime_dict() can be split with `.split("T")[0]` to extract date portion
+- For T-Bills, matured_value equals face value (amount), not amount + interest
+
+**Current State:**
+
+- Investment class is 95% complete
+- Tracker scene has ScrollContainer → VBoxContainer → InvestmentCard structure set up
+- Still need: serialization methods (to_dict, from_dict) for save/load functionality
+
+**Todo List Status:**
+
+✅ Completed (3):
+1. Create Investment.gd class with @export properties
+2. Add computed methods to Investment class
+3. Add helper methods to Investment class (get_end_date)
+
+🔄 In Progress (1):
+4. Add serialization methods to Investment class: to_dict() and from_dict() for save/load
+
+📋 Pending (10):
+5. Create investments list in Tracker.gd script to hold array of Investment objects
+6. Add 'Add Investment' button to Tracker scene UI
+7. Create investment form popup/dialog scene with input fields
+8. Implement form logic to handle CD vs T-Bill (conditional field labels)
+9. Wire up form submit to create Investment object and add to investments array
+10. Implement dynamic InvestmentCard spawning in VBoxContainer based on investments array
+11. Update InvestmentCard.gd to accept Investment object and populate labels with real data
+12. Wire up delete button on InvestmentCard to remove investment from array and refresh UI
+13. Implement save system: save investments array to JSON file using FileAccess
+14. Implement load system: load investments from JSON file on game start
+
+**Next Steps:**
+
+- Complete serialization methods (to_dict and from_dict) in Investment.gd
+- Create Tracker.gd script and add investments array
+- Add "Add Investment" button to Tracker scene
+- Build investment form popup/dialog with conditional CD/T-Bill fields
+- Implement form submission and dynamic card spawning
+
+---
+
+### 2025-12-31
+
+**Completed:**
+
+- ✓ Implemented serialization methods in Investment.gd (Scripts/Investment.gd:12-28)
+  - `to_dict()` - Converts Investment object to Dictionary for JSON serialization
+  - `from_dict(dict: Dictionary)` - Static method to create Investment from Dictionary
+  - Uses safe dictionary access with `.get(key, default)` for fallback values
+- ✓ Created DataManager.gd autoload singleton (Autoloads/DataManager.gd)
+  - `save_investments(investments: Array[Investment])` - Writes investments array to user://investments.json
+  - `load_investments()` - Reads and deserializes investments from JSON file
+  - Proper error handling for file operations and JSON parsing
+  - Uses `FileAccess` API and `JSON.stringify()` / `JSON.parse()`
+- ✓ Implemented Tracker.gd script (Scenes/Tracker/Tracker.gd)
+  - Loads saved investments on `_ready()` using DataManager
+  - Dynamically instantiates InvestmentCard for each investment
+  - Populates card data: start_date, end_date, type, rate, amount, actual_cost, interest_earned, matured_value
+  - Sets `is_active` based on `investment.get_status()`
+- ✓ Updated InvestmentCard.gd to accept and display investment data (Scenes/InvestmentCard/InvestmentCard.gd)
+  - Added class_name InvestmentCard for type safety
+  - Added properties: start_date, end_date, type, rate, amount, actual_value, interest_earned, matured_value, is_active
+  - Created `setup()` method to populate all label fields
+  - Implemented proper type conversion: `str(rate) + '%'`, `'$' + str(amount)`, etc.
+  - Active/inactive card texture switching based on `is_active` boolean
+
+**Key Discussions:**
+
+- **Save/load architecture**:
+  - DataManager as autoload singleton (not static utility class) for global access
+  - Investment serialization only includes @export properties (computed values calculated on-demand)
+  - Save file location: `user://investments.json` (platform-specific user data directory)
+- **Card instantiation pattern**:
+  - Important: Must instantiate new card **inside** the loop (not reuse same instance)
+  - Each card gets populated with data before being added to VBoxContainer
+- **Data flow in Tracker**:
+  - Load from file → create Investment objects → instantiate cards → populate data → add to scene tree
+
+**Current State:**
+
+- ✅ Complete save/load system working
+- ✅ Tracker page displays saved investments as cards
+- ✅ Cards show correct data with proper formatting
+- ✅ Active/inactive styling based on maturity status
+- 🎨 **Next**: Need to design "Add Investment" button pixel art in Aseprite
+
+**Todo List Status:**
+
+✅ Completed (7):
+1. Add serialization methods to Investment class (to_dict, from_dict)
+2. Create DataManager.gd autoload with save/load methods
+3. Create Tracker.gd script with investments array and load logic
+4. Implement dynamic InvestmentCard spawning in VBoxContainer
+5. Update InvestmentCard.gd to accept Investment object and populate labels
+6. Implement save system using FileAccess
+7. Implement load system on game start
+
+📋 Pending (4):
+8. Design "Add Investment" button pixel art in Aseprite
+9. Add "Add Investment" button to Tracker scene UI
+10. Create investment form popup/dialog scene with input fields (start_date, type selector, conditional CD/T-Bill fields)
+11. Implement form logic:
+   - Type selector switches between CD and T-Bill input fields
+   - CD: Amount ($), Rate (%)
+   - T-Bill: Face Value ($), Actual Cost ($)
+   - Form submission creates Investment object, adds to array, saves to file, refreshes UI
+12. Wire up delete button on InvestmentCard to remove investment from array and refresh UI
+
+**Next Steps:**
+
+- Design and export "Add Investment" button sprite in Aseprite
+- Add button to Tracker scene (position above or below ScrollContainer)
+- Create investment form popup/dialog scene
+- Implement form validation and submission logic
+- Add delete functionality to InvestmentCard
