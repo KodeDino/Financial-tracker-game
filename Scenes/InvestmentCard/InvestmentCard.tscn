@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmhpiel1ax4rp"]
+[gd_scene format=3 uid="uid://bmhpiel1ax4rp"]
 
 [ext_resource type="Script" uid="uid://b8r44k1jluln4" path="res://Scenes/InvestmentCard/InvestmentCard.gd" id="1_ap64o"]
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_ck5yc"]
@@ -8,9 +8,9 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vffqt"]
 atlas = ExtResource("5_581gk")
-region = Rect2(12, 258, 42, 42)
+region = Rect2(66, 144, 42, 42)
 
-[node name="InvestmentCard" type="NinePatchRect"]
+[node name="InvestmentCard" type="NinePatchRect" unique_id=838867062]
 custom_minimum_size = Vector2(320, 190)
 offset_top = 12.0
 offset_right = 328.0
@@ -22,7 +22,7 @@ patch_margin_right = 65
 patch_margin_bottom = 77
 script = ExtResource("1_ap64o")
 
-[node name="GeneralInfoGrid" type="GridContainer" parent="."]
+[node name="GeneralInfoGrid" type="GridContainer" parent="." unique_id=1871138775]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 24.0
@@ -30,47 +30,47 @@ offset_right = 130.0
 offset_bottom = 84.0
 columns = 2
 
-[node name="StartDateLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="StartDateLabel" type="Label" parent="GeneralInfoGrid" unique_id=1390442050]
 layout_mode = 2
 text = "Start"
 label_settings = ExtResource("4_vffqt")
 
-[node name="StartDateValueLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="StartDateValueLabel" type="Label" parent="GeneralInfoGrid" unique_id=509146032]
 layout_mode = 2
 text = "2025-11-04"
 label_settings = ExtResource("4_vffqt")
 
-[node name="EndDateLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="EndDateLabel" type="Label" parent="GeneralInfoGrid" unique_id=243747050]
 layout_mode = 2
 text = "End"
 label_settings = ExtResource("4_vffqt")
 
-[node name="EndDateValueLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="EndDateValueLabel" type="Label" parent="GeneralInfoGrid" unique_id=605075157]
 layout_mode = 2
 text = "2026-01-04"
 label_settings = ExtResource("4_vffqt")
 
-[node name="TypeLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="TypeLabel" type="Label" parent="GeneralInfoGrid" unique_id=583124772]
 layout_mode = 2
 text = "Type"
 label_settings = ExtResource("4_vffqt")
 
-[node name="TypeValueLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="TypeValueLabel" type="Label" parent="GeneralInfoGrid" unique_id=1132385575]
 layout_mode = 2
 text = "CD"
 label_settings = ExtResource("4_vffqt")
 
-[node name="RateLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="RateLabel" type="Label" parent="GeneralInfoGrid" unique_id=268976743]
 layout_mode = 2
 text = "Rate"
 label_settings = ExtResource("4_vffqt")
 
-[node name="RateValueLabel" type="Label" parent="GeneralInfoGrid"]
+[node name="RateValueLabel" type="Label" parent="GeneralInfoGrid" unique_id=1306861489]
 layout_mode = 2
 text = "4.15%"
 label_settings = ExtResource("4_vffqt")
 
-[node name="AmountInfoGrid" type="GridContainer" parent="."]
+[node name="AmountInfoGrid" type="GridContainer" parent="." unique_id=2141143064]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 60.0
@@ -78,47 +78,47 @@ offset_right = 297.0
 offset_bottom = 168.0
 columns = 2
 
-[node name="AmountLabel" type="Label" parent="AmountInfoGrid"]
+[node name="AmountLabel" type="Label" parent="AmountInfoGrid" unique_id=802851905]
 layout_mode = 2
 text = "Amount"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="AmountValueLabel" type="Label" parent="AmountInfoGrid"]
+[node name="AmountValueLabel" type="Label" parent="AmountInfoGrid" unique_id=732228301]
 layout_mode = 2
 text = "$5000"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="ActualLabel" type="Label" parent="AmountInfoGrid"]
+[node name="ActualLabel" type="Label" parent="AmountInfoGrid" unique_id=1279259026]
 layout_mode = 2
 text = "Actual"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="ActualValueLabel" type="Label" parent="AmountInfoGrid"]
+[node name="ActualValueLabel" type="Label" parent="AmountInfoGrid" unique_id=1131058686]
 layout_mode = 2
 text = "$4980"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="EarnedLabel" type="Label" parent="AmountInfoGrid"]
+[node name="EarnedLabel" type="Label" parent="AmountInfoGrid" unique_id=1729123653]
 layout_mode = 2
 text = "Earned"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="EarnedValueLabel" type="Label" parent="AmountInfoGrid"]
+[node name="EarnedValueLabel" type="Label" parent="AmountInfoGrid" unique_id=19038309]
 layout_mode = 2
 text = "$33.0"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="FinalLabel" type="Label" parent="AmountInfoGrid"]
+[node name="FinalLabel" type="Label" parent="AmountInfoGrid" unique_id=44508820]
 layout_mode = 2
 text = "Final"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="FinalValueLabel" type="Label" parent="AmountInfoGrid"]
+[node name="FinalValueLabel" type="Label" parent="AmountInfoGrid" unique_id=856824238]
 layout_mode = 2
 text = "$5033"
 label_settings = ExtResource("4_ck5yc")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=898912061]
 layout_mode = 0
 offset_left = 298.0
 offset_top = -12.0

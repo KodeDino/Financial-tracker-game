@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://8im65jqwxdqf"]
+[gd_scene format=3 uid="uid://8im65jqwxdqf"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_4r342"]
-[ext_resource type="LabelSettings" uid="uid://ckd5g5ln4x27y" path="res://Assets/LabelSettings/Dummy_label.tres" id="2_6efq2"]
+[ext_resource type="FontFile" uid="uid://cr6021vtdksw0" path="res://Assets/Fonts/04B_30__.TTF" id="3_ruilf"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_speis"]
+[ext_resource type="FontFile" uid="uid://cw6m0wpmw5dvd" path="res://Assets/Fonts/04B_03__.TTF" id="5_febsr"]
 
-[node name="Instruction" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_ruilf"]
+font = ExtResource("3_ruilf")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[node name="Instruction" type="Control" unique_id=856135095]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=605903487]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +26,45 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_4r342")
 
-[node name="DummyLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Instruction"
-label_settings = ExtResource("2_6efq2")
-
-[node name="Navigator" parent="." instance=ExtResource("3_speis")]
+[node name="Navigator" parent="." unique_id=137026582 instance=ExtResource("3_speis")]
 layout_mode = 1
+offset_top = 12.0
+offset_bottom = 12.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=549036077]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 352.0
+offset_bottom = 632.0
+mouse_filter = 2
+theme_override_constants/separation = 9
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1792266638]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_ruilf")
+text = "How to Use Your Tracker"
+label_settings = SubResource("LabelSettings_ruilf")
+
+[node name="Instruction" type="RichTextLabel" parent="VBoxContainer" unique_id=195581549]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.27450982, 0.47058824, 1)
+theme_override_fonts/normal_font = ExtResource("5_febsr")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "This sheet is designed to make tracking your financial plan as simple as possible. Here's how to get started:
+
+1. [color=#d09a6d]Go to the \"Tracker\" page[/color] This is where you'll log all your purchases.
+
+2. [color=#d09a6d]Click the \"Add\" button[/color] This will add a new row to the table for your monthly CD or T-bill puchase.
+
+3. [color=#d09a6d]Fill in the editable fields[/color] You only need to enter four pieces of information: Purchase Date, Type, Amount, and Rate (APY %)
+
+4. [color=#d09a6d]Automatic Calculations[/color] All the gray cells will calculate automatically for you! You'll instantly see the maturity date, interest you'll earn, and the final value.
+
+5. [color=#d09a6d]Check Your Dashboard[/color] Switch back to the \"Dashboard\" tab anytime to see your overall progress, total earnings, and how close you are to your goal.
+
+Tip: When an investment matures, use this sheet to see how much cash you have available to \"roll over\" into your next, bigger investment!"
+fit_content = true

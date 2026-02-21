@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b7ontp3i1qo2d"]
+
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_q14ih"]
+[ext_resource type="ButtonGroup" uid="uid://cqclpv87sgmef" path="res://Resources/ButtonGroup/new_button_group.tres" id="1_x5ows"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5ows"]
+atlas = ExtResource("1_q14ih")
+region = Rect2(6, 6, 132, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q14ih"]
+atlas = ExtResource("1_q14ih")
+region = Rect2(6, 54, 132, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hibb"]
+atlas = ExtResource("1_q14ih")
+region = Rect2(156, 6, 138, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iturh"]
+atlas = ExtResource("1_q14ih")
+region = Rect2(156, 54, 138, 42)
+
+[node name="RadioButton" type="Control" unique_id=1379311736]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=127126738]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="CDButton" type="TextureButton" parent="HBoxContainer" unique_id=1940711348]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_x5ows")
+texture_normal = SubResource("AtlasTexture_x5ows")
+texture_pressed = SubResource("AtlasTexture_q14ih")
+
+[node name="TbillButton" type="TextureButton" parent="HBoxContainer" unique_id=2110597490]
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+button_group = ExtResource("1_x5ows")
+texture_normal = SubResource("AtlasTexture_7hibb")
+texture_pressed = SubResource("AtlasTexture_iturh")

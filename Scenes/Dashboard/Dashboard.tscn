@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://g6s6plaeu4e"]
+[gd_scene format=3 uid="uid://g6s6plaeu4e"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_q7pta"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="2_h3w4h"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch6s6l436ibh4" path="res://Scenes/DashboardValueCard/DashboardValueCard.tscn" id="4_hdu7h"]
 [ext_resource type="PackedScene" uid="uid://d2ex30crq0gbu" path="res://Scenes/UpcomingMaturityCard/UpcomingMaturity.tscn" id="5_aa0xx"]
 
-[node name="Dashboard" type="Control"]
+[node name="Dashboard" type="Control" unique_id=1347155100]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=465487316]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,10 +23,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_q7pta")
 
-[node name="Navigator" parent="." instance=ExtResource("2_h3w4h")]
+[node name="Navigator" parent="." unique_id=1656610246 instance=ExtResource("2_h3w4h")]
 layout_mode = 1
+offset_top = 12.0
+offset_bottom = 12.0
 
-[node name="TPV" parent="." instance=ExtResource("4_hdu7h")]
+[node name="TPV" parent="." unique_id=618769132 instance=ExtResource("4_hdu7h")]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 16.0
@@ -35,7 +37,7 @@ offset_bottom = 72.0
 title_param = "TPV"
 value_param = "5000"
 
-[node name="TPC" parent="." instance=ExtResource("4_hdu7h")]
+[node name="TPC" parent="." unique_id=1209982251 instance=ExtResource("4_hdu7h")]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 80.0
@@ -44,7 +46,7 @@ offset_bottom = 136.0
 title_param = "TPC"
 value_param = "5400"
 
-[node name="TIE" parent="." instance=ExtResource("4_hdu7h")]
+[node name="TIE" parent="." unique_id=600734884 instance=ExtResource("4_hdu7h")]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 144.0
@@ -53,14 +55,14 @@ offset_bottom = 200.0
 title_param = "TIE"
 value_param = "400"
 
-[node name="ProgressCard" parent="." instance=ExtResource("4_aa0xx")]
+[node name="ProgressCard" parent="." unique_id=531441307 instance=ExtResource("4_aa0xx")]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 208.0
 offset_right = 352.0
 offset_bottom = 360.0
 
-[node name="UpcomingMaturity" parent="." instance=ExtResource("5_aa0xx")]
+[node name="UpcomingMaturity" parent="." unique_id=661601679 instance=ExtResource("5_aa0xx")]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 368.0

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://utuccfklkd2b"]
+
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_17c3s"]
+[ext_resource type="Script" uid="uid://bcp15wwfkuswv" path="res://Scenes/AddButton/AddButton.gd" id="2_sd8ky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd8ky"]
+atlas = ExtResource("1_17c3s")
+region = Rect2(312, 102, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7as2"]
+atlas = ExtResource("1_17c3s")
+region = Rect2(432, 222, 54, 54)
+
+[node name="AddButton" type="TextureButton" unique_id=752557158]
+offset_right = 54.0
+offset_bottom = 54.0
+scale = Vector2(0.8, 0.8)
+texture_normal = SubResource("AtlasTexture_sd8ky")
+texture_pressed = SubResource("AtlasTexture_y7as2")
+script = ExtResource("2_sd8ky")

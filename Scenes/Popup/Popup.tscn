@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d2oytyv8alyjo"]
+
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_cqdh6"]
+[ext_resource type="PackedScene" uid="uid://b7ontp3i1qo2d" path="res://Scenes/RadioButton/RadioButton.tscn" id="2_ctunk"]
+[ext_resource type="PackedScene" uid="uid://kvq4en5luvjt" path="res://Scenes/Checkbox/Checkbox.tscn" id="3_je06i"]
+
+[node name="Popup" type="Control" unique_id=841185820]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="." unique_id=1901096938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Modal" type="NinePatchRect" parent="." unique_id=766807426]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -221.5
+offset_right = 179.0
+offset_bottom = 221.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cqdh6")
+region_rect = Rect2(0, 0, 192, 144)
+patch_margin_left = 118
+patch_margin_top = 48
+patch_margin_right = 50
+patch_margin_bottom = 70
+
+[node name="MarginContainer" type="MarginContainer" parent="Modal" unique_id=771598155]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="RadioButton" parent="Modal/MarginContainer" unique_id=1379311736 instance=ExtResource("2_ctunk")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Modal" unique_id=940518198]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_bottom = 21
+
+[node name="Checkbox" parent="Modal/MarginContainer2" unique_id=1819826166 instance=ExtResource("3_je06i")]
+layout_mode = 2

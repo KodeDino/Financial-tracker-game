@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ditcs0wgmxhhf"]
+[gd_scene format=3 uid="uid://ditcs0wgmxhhf"]
 
 [ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_lgafj"]
 [ext_resource type="Script" uid="uid://dxndnts0hbgsl" path="res://Scenes/Navigator/Navigator.gd" id="1_r7nnm"]
@@ -8,26 +8,47 @@ load_path = "res://.godot/imported/FT_sprites_6x.png-c6e248d03835ca85888ecdf616c
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aplcp"]
 atlas = SubResource("CompressedTexture2D_lgafj")
-region = Rect2(0, 0, 102, 102)
+region = Rect2(6, 288, 120, 120)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7nnm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprfa"]
+atlas = ExtResource("1_lgafj")
+region = Rect2(6, 540, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e78ep"]
 atlas = SubResource("CompressedTexture2D_lgafj")
-region = Rect2(108, 0, 102, 102)
+region = Rect2(132, 288, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05y61"]
+atlas = ExtResource("1_lgafj")
+region = Rect2(132, 540, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_piwsc"]
 atlas = ExtResource("1_lgafj")
-region = Rect2(216, 0, 102, 102)
+region = Rect2(258, 288, 120, 120)
 
-[node name="Navigator" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_64yoy"]
+atlas = ExtResource("1_lgafj")
+region = Rect2(258, 540, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7nnm"]
+atlas = SubResource("CompressedTexture2D_lgafj")
+region = Rect2(384, 288, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gubo"]
+atlas = ExtResource("1_lgafj")
+region = Rect2(384, 540, 120, 121)
+
+[node name="Navigator" type="Control" unique_id=1340512915]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_r7nnm")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1366810189]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -38,23 +59,27 @@ offset_right = 695.0
 offset_bottom = 46.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
-theme_override_constants/separation = 93
+theme_override_constants/separation = 69
 
-[node name="DashboardButton" type="TextureButton" parent="HBoxContainer"]
+[node name="DashboardButton" type="TextureButton" parent="HBoxContainer" unique_id=1357072342]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_aplcp")
+texture_pressed = SubResource("AtlasTexture_oprfa")
 
-[node name="TrackerButton" type="TextureButton" parent="HBoxContainer"]
+[node name="TrackerButton" type="TextureButton" parent="HBoxContainer" unique_id=2022681602]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_r7nnm")
+texture_normal = SubResource("AtlasTexture_e78ep")
+texture_pressed = SubResource("AtlasTexture_05y61")
 
-[node name="HistoryButton" type="TextureButton" parent="HBoxContainer"]
+[node name="HistoryButton" type="TextureButton" parent="HBoxContainer" unique_id=1709333902]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_piwsc")
+texture_pressed = SubResource("AtlasTexture_64yoy")
 
-[node name="InstructionButton" type="TextureButton" parent="HBoxContainer"]
+[node name="InstructionButton" type="TextureButton" parent="HBoxContainer" unique_id=1381575828]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_r7nnm")
+texture_pressed = SubResource("AtlasTexture_0gubo")
 
 [connection signal="pressed" from="HBoxContainer/DashboardButton" to="." method="_on_dashboard_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/TrackerButton" to="." method="_on_tracker_button_pressed"]

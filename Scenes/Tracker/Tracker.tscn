@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://by278ayxqjxf5"]
+[gd_scene format=3 uid="uid://by278ayxqjxf5"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_0am6p"]
 [ext_resource type="Script" uid="uid://cqtrfkjku2nc0" path="res://Scenes/Tracker/Tracker.gd" id="1_b72r1"]
 [ext_resource type="PackedScene" uid="uid://bmhpiel1ax4rp" path="res://Scenes/InvestmentCard/InvestmentCard.tscn" id="3_b72r1"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_m62ni"]
+[ext_resource type="FontFile" uid="uid://cr6021vtdksw0" path="res://Assets/Fonts/04B_30__.TTF" id="4_pgx7y"]
+[ext_resource type="PackedScene" uid="uid://utuccfklkd2b" path="res://Scenes/AddButton/AddButton.tscn" id="5_q86oa"]
 
-[node name="Tracker" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_q86oa"]
+font = ExtResource("4_pgx7y")
+font_size = 32
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[node name="Tracker" type="Control" unique_id=217107382]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b72r1")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1384296253]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,19 +30,57 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0am6p")
 
-[node name="Navigator" parent="." instance=ExtResource("3_m62ni")]
+[node name="Navigator" parent="." unique_id=1702114045 instance=ExtResource("3_m62ni")]
 layout_mode = 1
+offset_top = 12.0
+offset_bottom = 12.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2029395158]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1279493218]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer" unique_id=877811032]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tracker"
+label_settings = SubResource("LabelSettings_q86oa")
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1997055096]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AddButton" parent="MarginContainer/HBoxContainer/Control" unique_id=752557158 instance=ExtResource("5_q86oa")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -49.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=307508679]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -72.0
+offset_top = 48.0
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=1918296924]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -44,18 +89,18 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=364273940]
 layout_mode = 2
 theme_override_constants/separation = 19
 
-[node name="InvestmentCard" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
+[node name="InvestmentCard" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1972282689 instance=ExtResource("3_b72r1")]
 layout_mode = 2
 
-[node name="InvestmentCard2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
+[node name="InvestmentCard2" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=383143013 instance=ExtResource("3_b72r1")]
 layout_mode = 2
 
-[node name="InvestmentCard3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
+[node name="InvestmentCard3" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1260473186 instance=ExtResource("3_b72r1")]
 layout_mode = 2
 
-[node name="InvestmentCard4" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_b72r1")]
+[node name="InvestmentCard4" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=229428724 instance=ExtResource("3_b72r1")]
 layout_mode = 2

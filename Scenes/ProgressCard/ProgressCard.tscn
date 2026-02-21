@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvwvycdce4y0d"]
+[gd_scene format=3 uid="uid://bvwvycdce4y0d"]
 
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_81bda"]
 [ext_resource type="Script" uid="uid://btassneybilem" path="res://Scenes/ProgressCard/ProgressCard.gd" id="2_phcle"]
@@ -9,9 +9,9 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s2qr"]
 atlas = ExtResource("5_lp6u1")
-region = Rect2(12, 258, 42, 42)
+region = Rect2(66, 144, 42, 42)
 
-[node name="ProgressCard" type="NinePatchRect"]
+[node name="ProgressCard" type="NinePatchRect" unique_id=509354341]
 offset_right = 344.0
 offset_bottom = 152.0
 texture = ExtResource("1_81bda")
@@ -22,15 +22,15 @@ patch_margin_right = 45
 patch_margin_bottom = 62
 script = ExtResource("2_phcle")
 
-[node name="TextureProgressBar" parent="." instance=ExtResource("3_rlami")]
+[node name="TextureProgressBar" parent="." unique_id=2092862229 instance=ExtResource("3_rlami")]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 96.0
 offset_right = 318.0
 offset_bottom = 120.0
-value = 10.0
+value = 25.0
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=1143010943]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 24.0
@@ -39,7 +39,7 @@ offset_bottom = 47.0
 text = "Progress"
 label_settings = ExtResource("4_0m5tf")
 
-[node name="PercentLabel" type="Label" parent="."]
+[node name="PercentLabel" type="Label" parent="." unique_id=1547703367]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 120.0
@@ -48,7 +48,7 @@ offset_bottom = 143.0
 text = "10%"
 label_settings = ExtResource("5_rlami")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=690454483]
 layout_mode = 0
 offset_left = 280.00003
 offset_top = 16.0

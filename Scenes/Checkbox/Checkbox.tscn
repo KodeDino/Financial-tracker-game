@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://kvq4en5luvjt"]
+
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_2xt78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ued6n"]
+atlas = ExtResource("1_2xt78")
+region = Rect2(66, 210, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xt78"]
+atlas = ExtResource("1_2xt78")
+region = Rect2(18, 210, 42, 42)
+
+[node name="Checkbox" type="TextureButton" unique_id=1819826166]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_ued6n")
+texture_pressed = SubResource("AtlasTexture_2xt78")

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca4wy1cuat0tg"]
+[gd_scene format=3 uid="uid://ca4wy1cuat0tg"]
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_rsxl5"]
 [ext_resource type="LabelSettings" uid="uid://ckd5g5ln4x27y" path="res://Assets/LabelSettings/Dummy_label.tres" id="2_q2e16"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_siv7t"]
 
-[node name="History" type="Control"]
+[node name="History" type="Control" unique_id=500132184]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2035206975]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +21,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_rsxl5")
 
-[node name="DummyLabel" type="Label" parent="."]
+[node name="DummyLabel" type="Label" parent="." unique_id=1068843534]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "History"
 label_settings = ExtResource("2_q2e16")
 
-[node name="Navigator" parent="." instance=ExtResource("3_siv7t")]
+[node name="Navigator" parent="." unique_id=2124419752 instance=ExtResource("3_siv7t")]
 layout_mode = 1
+offset_top = 12.0
+offset_bottom = 12.0

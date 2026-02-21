@@ -259,8 +259,10 @@ Converting existing financial tracker web app into a Godot mobile game with cust
 6. Implement save system using FileAccess
 7. Implement load system on game start
 
-📋 Pending (4):
+✅ Completed (1):
 8. Design "Add Investment" button pixel art in Aseprite
+
+📋 Pending (4):
 9. Add "Add Investment" button to Tracker scene UI
 10. Create investment form popup/dialog scene with input fields (start_date, type selector, conditional CD/T-Bill fields)
 11. Implement form logic:
@@ -272,8 +274,132 @@ Converting existing financial tracker web app into a Godot mobile game with cust
 
 **Next Steps:**
 
-- Design and export "Add Investment" button sprite in Aseprite
 - Add button to Tracker scene (position above or below ScrollContainer)
 - Create investment form popup/dialog scene
 - Implement form validation and submission logic
 - Add delete functionality to InvestmentCard
+
+---
+
+### 2026-02-12
+
+**Completed:**
+
+- ✓ Fixed fullscreen issue - project was launching in fullscreen mode (window/size/mode=3 in project.godot), identified the setting
+- ✓ Redesigned navigation button sprites in Aseprite (FT_sprites_6x.png)
+  - Normal state: Added shadow around the button to make center sphere stand out
+  - Hover animation: 7 frames - highlight on the rounded button rotates in circles, indicating selection
+  - Pressed state: Center sphere shifted down to give a "pressed" feel
+- ✓ Imported new button sprites into Navigator scene using AtlasTexture regions
+- ✓ Discovered and fixed AnimatedTexture + AtlasTexture bug
+  - **Problem**: Godot's AnimatedTexture ignores AtlasTexture region coordinates, renders from top-left of full spritesheet instead
+  - **Solution chosen**: Script-based hover animation (over splitting spritesheet into individual PNGs, which would be too tedious)
+  - Implemented in Navigator.gd: Timer-based frame cycling that swaps `texture_hover` to individual AtlasTexture objects on each tick
+  - `_setup_hover()` creates AtlasTexture frames from spritesheet regions, wires up mouse_entered/mouse_exited signals and Timer
+  - Applied hover animation to all 4 buttons: Dashboard, Tracker, History, Instruction
+- ✓ Wrote weekly video transcript (Chinese) covering this session's work
+
+**Key Learnings:**
+
+- AnimatedTexture does NOT work with AtlasTexture frames in Godot - known limitation
+- Workaround: Swap `texture_hover` property directly with individual AtlasTexture objects via Timer, bypassing AnimatedTexture entirely
+- project.godot `window/size/mode` values: 0=Windowed, 1=Minimized, 2=Maximized, 3=Fullscreen, 4=Exclusive Fullscreen
+
+**Current State:**
+
+- Navigation buttons fully redesigned with normal/hover/pressed states working
+- All 4 buttons have animated hover effect via script
+- Project back on track after vacation break
+
+**Note:** When wrapping up for the day, automatically log progress to .CLAUDE
+
+**Next Steps:**
+
+- Continue with functional development (pending tasks from 2025-12-31)
+- Add "Add Investment" button to Tracker scene UI
+- Create investment form popup/dialog scene
+- Implement form logic and delete functionality
+
+---
+
+### 2026-02-17
+
+**Completed:**
+
+- ✓ Built Instruction page (Scenes/Instruction/Instruction.tscn)
+  - VBoxContainer with Title (Label) and Instruction (RichTextLabel)
+  - Used BBCode with hex color codes for styled text (e.g., `[color=#hex]...[/color]`)
+  - Fixed mouse input blocking: set `mouse_filter = 2` (Ignore) on VBoxContainer so Navigator buttons remain clickable
+- ✓ Created AddButton scene (Scenes/AddButton/AddButton.tscn)
+  - Reusable "+" button for both investment and goal creation
+  - TextureButton with normal texture from FT_sprites_6x.png at Rect2(312, 6, 54, 54)
+  - Implemented hover animation in AddButton.gd using same Timer-based approach as Navigator.gd
+  - 8 hover frames from spritesheet (3×3 grid minus 1, top-right corner)
+- ✓ Added AddButton to Tracker scene header
+  - HBoxContainer with Title (Fill+Expand) and AddButton (right-aligned)
+  - Wrapped AddButton in plain Control node to allow scale (0.8) inside container
+
+**Key Learnings:**
+
+- RichTextLabel with `bbcode_enabled` supports inline color styling via `[color=#hex]...[/color]`
+- Control nodes with large rects can block mouse input to nodes behind them — fix with `mouse_filter = 2` (Ignore)
+- Containers (HBoxContainer, VBoxContainer) override children's scale/size — wrap in a plain Control node to preserve scale
+- `size_flags_horizontal = 3` (Fill + Expand) on a label inside HBoxContainer = flexbox space-between equivalent
+
+**Current State:**
+
+- Instruction page complete with styled text
+- AddButton scene reusable with hover animation
+- Tracker header has title + add button layout
+
+**Next Steps:**
+
+- Create investment form popup/dialog scene with input fields (start_date, type selector, conditional CD/T-Bill fields)
+- Implement form logic: type selector, validation, submission
+- Wire up AddButton press to open the form
+- Wire up delete button on InvestmentCard
+- Replicate AddButton usage for goal creation on Dashboard
+
+---
+
+### 2026-02-18
+
+**Completed:**
+
+- ✓ Created Popup scene (Scenes/Popup/Popup.tscn)
+  - Custom overlay approach (#2) chosen over Godot's built-in Popup nodes — more flexible for pixel art style
+  - Control root (full-screen) → ColorRect (dim background, ~40% black) → NinePatchRect (Modal, centered, Card.png)
+  - MarginContainer inside Modal for content layout
+- ✓ Created RadioButton scene (Scenes/RadioButton/RadioButton.tscn)
+  - Reusable component: Control root → HBoxContainer → CDButton + TbillButton
+  - Both TextureButtons with `toggle_mode = true` and shared ButtonGroup resource (Resources/ButtonGroup/new_button_group.tres)
+  - CDButton defaults to `button_pressed = true`
+  - Normal/pressed textures from FT_sprites_6x.png spritesheet
+- ✓ Created Checkbox scene (Scenes/Checkbox/Checkbox.tscn)
+  - Standalone TextureButton with `toggle_mode = true`
+  - Normal (unchecked) and pressed (checked) textures from spritesheet
+  - For the "reinvesting from matured investments" toggle
+- ✓ Added RadioButton and Checkbox to Popup scene inside Modal with MarginContainers
+- ✓ Fixed Navigator hover coordinates for TrackerButton, HistoryButton, InstructionButton
+  - Updated y values from old (318, 570, 696, 822, 948, 1074, 1200) to corrected (414, 666, 792, 918, 1044, 1170, 1296)
+
+**Key Learnings:**
+
+- Godot popup approaches: built-in Popup nodes (themed), custom overlay (flexible), CanvasLayer (layering), Window (desktop only)
+- TextureButton `toggle_mode` + `ButtonGroup` = radio button behavior with no code needed
+- Don't use "disabled" state for unselected radio buttons — disabled blocks input. Use normal = unselected, pressed = selected
+- `button_pressed = true` in Inspector to default a toggle button to active state
+
+**Current State:**
+
+- Popup form has: radio buttons (CD/T-Bill selector), checkbox (reinvest toggle)
+- Still need: input fields, date picker, submit/cancel buttons, form logic
+
+**Next Steps:**
+
+- Discuss and implement input fields (amount/rate for CD, face value/actual cost for T-Bill) — need to figure out text input with pixel art style
+- Implement date picker (most complex component — no built-in Godot date picker)
+- Add submit/cancel buttons to form
+- Implement form logic: type selector switches fields, validation, submission
+- Wire up AddButton press to open Popup
+- Wire up delete button on InvestmentCard
