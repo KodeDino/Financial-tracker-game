@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b7ontp3i1qo2d"]
 
+[ext_resource type="Script" uid="uid://d0vwp4y78ntd5" path="res://Scenes/RadioButton/RadioButton.gd" id="1_7hibb"]
 [ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="1_q14ih"]
 [ext_resource type="ButtonGroup" uid="uid://cqclpv87sgmef" path="res://Resources/ButtonGroup/new_button_group.tres" id="1_x5ows"]
 
@@ -27,6 +28,7 @@ anchor_right = 0.5
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_7hibb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=127126738]
 layout_mode = 1
@@ -52,3 +54,6 @@ toggle_mode = true
 button_group = ExtResource("1_x5ows")
 texture_normal = SubResource("AtlasTexture_7hibb")
 texture_pressed = SubResource("AtlasTexture_iturh")
+
+[connection signal="toggled" from="HBoxContainer/CDButton" to="." method="_on_cd_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/TbillButton" to="." method="_on_tbill_button_toggled"]

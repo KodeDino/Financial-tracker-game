@@ -397,9 +397,113 @@ Converting existing financial tracker web app into a Godot mobile game with cust
 
 **Next Steps:**
 
-- Discuss and implement input fields (amount/rate for CD, face value/actual cost for T-Bill) — need to figure out text input with pixel art style
+- Implement input fields using hybrid approach (transparent LineEdit on top of pixel art NinePatchRect)
 - Implement date picker (most complex component — no built-in Godot date picker)
 - Add submit/cancel buttons to form
 - Implement form logic: type selector switches fields, validation, submission
 - Wire up AddButton press to open Popup
 - Wire up delete button on InvestmentCard
+
+---
+
+### 2026-02-21
+
+**Completed:**
+
+- ✓ Created InputField scene (Scenes/InputField/InputField.tscn)
+  - Hybrid approach: NinePatchRect (pixel art background) + transparent LineEdit on top
+  - LineEdit: StyleBoxEmpty on normal + focus, virtual_keyboard_type = NUMBER_DECIMAL, max_length = 10
+- ✓ Built out Popup form with all UI components:
+  - Two input groups (FirstInputMarginContainer, SecondInputMarginContainer)
+  - Each has a plain Control wrapper with two overlapping labels (one visible, one hidden)
+  - AmountLabel/FaceValueLabel swap for first field; RateLabel/ActualCostLabel swap for second
+  - Both reuse the same InputField instances — labels toggle, fields stay
+  - ReinvestedMarginContainer (hidden by default) with Label + InputField — no Control wrapper needed since only one label
+  - Checkbox toggled signal connected to Popup.gd (_on_checkbox_toggled)
+  - All 5 labels have unique inline LabelSettings sub-resources
+- ✓ Attached Popup.gd script to Popup root node
+
+**Key Learnings:**
+
+- Plain Control wrapper around overlapping labels causes VBoxContainer to need separation = 18 to compensate for wrapper height; direct Label → InputField layout uses default separation naturally
+- Checkbox state: use `button_pressed` property to read; connect `toggled` signal for reactive updates
+- Modal height can be adjusted in script via `offset_top` and `offset_bottom` symmetrically (center anchor)
+
+**Current State:**
+
+- Popup form UI complete: RadioButton, two input fields with swappable labels, Checkbox + label, Reinvested Amount field (hidden)
+- Script stub exists but no logic yet
+
+**Next Steps (in order):**
+
+1. Submit/Cancel buttons — draw pixel art, add to Popup scene
+2. Date picker — design and draw pixel art UI in Aseprite
+3. Input logic — RadioButton toggle swaps labels + clears fields; Checkbox toggle shows/hides reinvest field + resizes modal; form submission creates Investment object
+4. Date picker logic — implement custom date picker interaction
+
+---
+
+### 2026-02-23
+
+**Completed:**
+
+- ✓ Drew and added the Submit button to the Popup form — pixel art has normal and pressed states
+- ✓ Drew and added the Cancel button to the Popup form
+- ✓ Implemented RadioButton.gd
+  - `signal type_changed(type: String)` emitted when either button is toggled on
+  - `_on_cd_button_toggled` and `_on_tbill_button_toggled` both guard with `if toggled_on` to avoid double-firing from ButtonGroup's auto-deselect behavior
+- ✓ Implemented Popup.gd logic
+  - Connected `radio_button.type_changed` in `_ready()` to `_on_type_changed()`
+  - `_on_type_changed()` calls `show_hide_cd_labels()` and `show_hide_tbill_labels()` accordingly
+  - `_on_checkbox_toggled()` shows/hides `reinvested_margin_container` and resizes modal symmetrically via `offset_top`/`offset_bottom`
+  - `_on_cancel_button_pressed()` calls `hide()` directly (script is on the root node itself)
+
+**Hiccups Encountered (good video content):**
+
+1. **`self.hide()` vs redundant node reference**: Initially wrote `@onready var popup: Control = $"."` to get a reference to the root node, then called `popup.hide()`. Realized a script attached to a node can just call `hide()` directly — no need to reference itself.
+
+2. **Unnecessary `else` fallback (TypeScript habit)**: Added a default `else` branch in `_on_type_changed()` out of habit from TypeScript/ESLint, where linters often enforce exhaustive conditionals. In GDScript there's no such enforcement — the else was unreachable dead code since only `'cd'` and `'tbill'` are ever emitted. Good reminder that GDScript is more relaxed about this than TypeScript.
+
+3. **AtlasTexture region height for pressed button state**: When drawing the Submit button, the pressed sprite is shorter than the normal one. Initially selected only the exact pixel bounds of the shorter sprite for the pressed AtlasTexture region — this made the button look like it was shrinking upward rather than being pushed down. Fix: select a region of the **same height** as the normal state, but leave transparent empty space at the **top**, so the button pixels sit at the bottom of the bounding box, correctly simulating a pushed-down effect.
+
+**Current State:**
+
+- Popup form UI and logic complete: RadioButton (type switching), Checkbox (reinvest toggle + modal resize), Cancel button, Submit button (logic stubbed)
+- DatePicker UI complete (Year, Month, Day pickers with up/down buttons and NinePatchRect label)
+- DatePicker logic complete (up/down increment/decrement, value_changed signal, update_label on init)
+- Still needs: Popup.gd connecting DatePicker signals + day clamping, form submission logic
+
+**Next Steps:**
+
+- Popup.gd — connect all three DatePicker `value_changed` signals, assemble date dict, handle day clamping via `set_value()` on day picker
+- Form submission — wire up Submit button to create Investment object, save, refresh Tracker UI
+- Wire up AddButton press to open Popup
+- Wire up delete button on InvestmentCard
+
+---
+
+## Add Investment Form — Field Specification
+
+### Date Picker
+- Picks the **starting date** of the investment
+
+### Investment Type (CD or T-Bill — toggled by RadioButton)
+
+**CD fields:**
+- Amount → amount invested ($)
+- Rate → interest rate (%)
+
+**T-Bill fields:**
+- Face Value → amount when T-Bill matures ($)
+- Actual Cost → actual purchase cost of the T-Bill ($)
+
+### Reinvesting Checkbox (bottom of form)
+- Checkbox: "Reinvesting from matured investment?"
+- If checked, shows one additional field:
+  - Reinvested Amount → amount taken from a previously matured investment ($)
+  - This represents the portion of the new investment funded by a prior maturity
+
+### Input Field Implementation
+- Hybrid approach: transparent `LineEdit` layered on top of pixel art `NinePatchRect` background
+- Number fields: `virtual_keyboard_type = NUMBER_DECIMAL`
+- CD and T-Bill field groups are shown/hidden based on RadioButton selection

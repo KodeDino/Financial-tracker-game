@@ -1,8 +1,49 @@
 [gd_scene format=3 uid="uid://d2oytyv8alyjo"]
 
+[ext_resource type="Script" uid="uid://bg7p4310j1c46" path="res://Scenes/Popup/Popup.gd" id="1_76qw0"]
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_cqdh6"]
 [ext_resource type="PackedScene" uid="uid://b7ontp3i1qo2d" path="res://Scenes/RadioButton/RadioButton.tscn" id="2_ctunk"]
+[ext_resource type="FontFile" uid="uid://cw6m0wpmw5dvd" path="res://Assets/Fonts/04B_03__.TTF" id="3_gxl3e"]
 [ext_resource type="PackedScene" uid="uid://kvq4en5luvjt" path="res://Scenes/Checkbox/Checkbox.tscn" id="3_je06i"]
+[ext_resource type="PackedScene" uid="uid://b5yxidj5wreim" path="res://Scenes/InputField/InputField.tscn" id="5_m2hwa"]
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="7_76qw0"]
+[ext_resource type="PackedScene" uid="uid://ba4h8r8bycd2n" path="res://Scenes/DatePicker/DatePicker.tscn" id="8_vqhhu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76qw0"]
+atlas = ExtResource("7_76qw0")
+region = Rect2(66, 144, 42, 42)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxl3e"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqhhu"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2hwa"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x6qgw"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_76qw0"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6vlri"]
+font = ExtResource("3_gxl3e")
+font_color = Color(0, 0.27416673, 0.47, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqhhu"]
+atlas = ExtResource("7_76qw0")
+region = Rect2(12, 1440, 150, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6qgw"]
+atlas = ExtResource("7_76qw0")
+region = Rect2(168, 1440, 150, 66)
 
 [node name="Popup" type="Control" unique_id=841185820]
 layout_mode = 3
@@ -11,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_76qw0")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1901096938]
 layout_mode = 1
@@ -29,9 +71,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -179.0
-offset_top = -221.5
+offset_top = -234.75
 offset_right = 179.0
-offset_bottom = 221.5
+offset_bottom = 234.75
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cqdh6")
@@ -41,30 +83,187 @@ patch_margin_top = 48
 patch_margin_right = 50
 patch_margin_bottom = 70
 
-[node name="MarginContainer" type="MarginContainer" parent="Modal" unique_id=771598155]
-visible = false
+[node name="CancelButton" type="TextureButton" parent="Modal" unique_id=1590782056]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = -18.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_76qw0")
+
+[node name="RadioButtonMarginContainer" type="MarginContainer" parent="Modal" unique_id=771598155]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/margin_top = 16
 
-[node name="RadioButton" parent="Modal/MarginContainer" unique_id=1379311736 instance=ExtResource("2_ctunk")]
+[node name="RadioButton" parent="Modal/RadioButtonMarginContainer" unique_id=1379311736 instance=ExtResource("2_ctunk")]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="Modal" unique_id=940518198]
+[node name="FirstInputMarginContainer" type="MarginContainer" parent="Modal" unique_id=798655910]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 164.0
+offset_bottom = 182.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_right = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modal/FirstInputMarginContainer" unique_id=401782103]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="FirstInputLabels" type="Control" parent="Modal/FirstInputMarginContainer/VBoxContainer" unique_id=1675327813]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="AmountLabel" type="Label" parent="Modal/FirstInputMarginContainer/VBoxContainer/FirstInputLabels" unique_id=294992709]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 16.0
+size_flags_horizontal = 0
+text = "Amount ($)"
+label_settings = SubResource("LabelSettings_gxl3e")
+
+[node name="FaceValueLabel" type="Label" parent="Modal/FirstInputMarginContainer/VBoxContainer/FirstInputLabels" unique_id=1208122757]
+visible = false
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 16.0
+text = "Face Value ($)"
+label_settings = SubResource("LabelSettings_vqhhu")
+
+[node name="InputField" parent="Modal/FirstInputMarginContainer/VBoxContainer" unique_id=273924191 instance=ExtResource("5_m2hwa")]
+layout_mode = 2
+
+[node name="SecondInputMarginContainer" type="MarginContainer" parent="Modal" unique_id=708896223]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 245.0
+offset_bottom = 263.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_right = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modal/SecondInputMarginContainer" unique_id=1129896786]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="SecondInputLabels" type="Control" parent="Modal/SecondInputMarginContainer/VBoxContainer" unique_id=1969745333]
+layout_mode = 2
+
+[node name="RateLabel" type="Label" parent="Modal/SecondInputMarginContainer/VBoxContainer/SecondInputLabels" unique_id=1630024196]
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 16.0
+text = "Rate (%)"
+label_settings = SubResource("LabelSettings_m2hwa")
+
+[node name="ActualCostLabel" type="Label" parent="Modal/SecondInputMarginContainer/VBoxContainer/SecondInputLabels" unique_id=344145552]
+visible = false
+layout_mode = 0
+offset_right = 330.0
+offset_bottom = 16.0
+text = "Actual Cost ($)"
+label_settings = SubResource("LabelSettings_x6qgw")
+
+[node name="InputField" parent="Modal/SecondInputMarginContainer/VBoxContainer" unique_id=786112328 instance=ExtResource("5_m2hwa")]
+layout_mode = 2
+
+[node name="CheckboxMarginContainer" type="MarginContainer" parent="Modal" unique_id=940518198]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 330.0
+offset_bottom = 393.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 21
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Modal/CheckboxMarginContainer" unique_id=1984378179]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Checkbox" parent="Modal/CheckboxMarginContainer/HBoxContainer" unique_id=1819826166 instance=ExtResource("3_je06i")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckboxLabel" type="Label" parent="Modal/CheckboxMarginContainer/HBoxContainer" unique_id=1438081109]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reinvesting from matured 
+investments"
+label_settings = SubResource("LabelSettings_76qw0")
+
+[node name="ReinvestedMarginContainer" type="MarginContainer" parent="Modal" unique_id=1277033388]
 visible = false
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 380.0
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_right = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modal/ReinvestedMarginContainer" unique_id=1290137358]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Modal/ReinvestedMarginContainer/VBoxContainer" unique_id=1190477734]
+layout_mode = 2
+text = "Reinvested Amount ($)"
+label_settings = SubResource("LabelSettings_6vlri")
+
+[node name="InputField" parent="Modal/ReinvestedMarginContainer/VBoxContainer" unique_id=1740680316 instance=ExtResource("5_m2hwa")]
+layout_mode = 2
+
+[node name="SubmitButton" type="TextureButton" parent="Modal" unique_id=1155646073]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -42.0
-grow_horizontal = 2
+offset_left = -177.0
+offset_top = -85.5
+offset_right = -27.0
+offset_bottom = -19.5
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_bottom = 21
+texture_normal = SubResource("AtlasTexture_vqhhu")
+texture_pressed = SubResource("AtlasTexture_x6qgw")
 
-[node name="Checkbox" parent="Modal/MarginContainer2" unique_id=1819826166 instance=ExtResource("3_je06i")]
-layout_mode = 2
+[node name="YearPicker" parent="Modal" unique_id=667777001 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 82.0
+offset_right = 17.0
+offset_bottom = 157.0
+date_type = "year"
+
+[node name="MonthPicker" parent="Modal" unique_id=1926736918 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 125.0
+offset_top = 82.0
+offset_right = 125.0
+offset_bottom = 157.0
+date_type = "month"
+
+[node name="DayPicker" parent="Modal" unique_id=1814054572 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 233.0
+offset_top = 82.0
+offset_right = 233.0
+offset_bottom = 157.0
+date_type = "day"
+
+[connection signal="pressed" from="Modal/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="toggled" from="Modal/CheckboxMarginContainer/HBoxContainer/Checkbox" to="." method="_on_checkbox_toggled"]
