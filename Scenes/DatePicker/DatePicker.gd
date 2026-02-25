@@ -12,6 +12,7 @@ const DAY = 'day'
 
 var values: Array = []
 var current_index: int = 0
+var max_value: int = 31
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +37,7 @@ func setup_date(start: int, end: int, current: int) -> void:
 
 
 func _on_up_button_pressed() -> void:
-	if current_index < values.size() - 1:
+	if current_index < values.size() - 1 and values[current_index + 1] <= max_value:
 		current_index += 1
 		update_label()
 		value_changed.emit(date_type, values[current_index])
@@ -51,3 +52,16 @@ func _on_down_button_pressed() -> void:
 
 func update_label() -> void:
 	value_label.text = str(values[current_index])
+	
+
+func set_value(value: int) -> void:
+	var index = values.find(value)
+	if index != -1:
+		current_index = index
+		update_label()
+
+func set_max(new_max: int) -> void:
+	max_value = new_max
+	if values[current_index] > max_value:
+		current_index = new_max - 1
+		update_label()

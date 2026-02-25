@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_m62ni"]
 [ext_resource type="FontFile" uid="uid://cr6021vtdksw0" path="res://Assets/Fonts/04B_30__.TTF" id="4_pgx7y"]
 [ext_resource type="PackedScene" uid="uid://utuccfklkd2b" path="res://Scenes/AddButton/AddButton.tscn" id="5_q86oa"]
+[ext_resource type="PackedScene" uid="uid://d2oytyv8alyjo" path="res://Scenes/Popup/Popup.tscn" id="7_5dewh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q86oa"]
 font = ExtResource("4_pgx7y")
@@ -104,3 +105,9 @@ layout_mode = 2
 
 [node name="InvestmentCard4" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=229428724 instance=ExtResource("3_b72r1")]
 layout_mode = 2
+
+[node name="Popup" parent="." unique_id=841185820 instance=ExtResource("7_5dewh")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Control/AddButton" to="." method="_on_add_button_pressed"]

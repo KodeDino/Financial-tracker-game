@@ -3,6 +3,7 @@ extends Control
 var investments: Array[Investment] = []
 
 @onready var v_box_container: VBoxContainer = $ScrollContainer/MarginContainer/VBoxContainer
+@onready var popup: Control = $Popup
 
 const INVESTMENT_CARD = preload("uid://bmhpiel1ax4rp")
 
@@ -20,3 +21,7 @@ func _ready() -> void:
 		investment_card.matured_value = investment.get_matured_value()
 		investment_card.is_active = investment.get_status()
 		v_box_container.add_child(investment_card)
+
+
+func _on_add_button_pressed() -> void:
+	popup.show()

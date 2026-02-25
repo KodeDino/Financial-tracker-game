@@ -106,6 +106,30 @@ theme_override_constants/margin_top = 16
 [node name="RadioButton" parent="Modal/RadioButtonMarginContainer" unique_id=1379311736 instance=ExtResource("2_ctunk")]
 layout_mode = 2
 
+[node name="YearPicker" parent="Modal" unique_id=667777001 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 82.0
+offset_right = 17.0
+offset_bottom = 157.0
+date_type = "year"
+
+[node name="MonthPicker" parent="Modal" unique_id=1926736918 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 125.0
+offset_top = 82.0
+offset_right = 125.0
+offset_bottom = 157.0
+date_type = "month"
+
+[node name="DayPicker" parent="Modal" unique_id=1814054572 instance=ExtResource("8_vqhhu")]
+layout_mode = 1
+offset_left = 233.0
+offset_top = 82.0
+offset_right = 233.0
+offset_bottom = 157.0
+date_type = "day"
+
 [node name="FirstInputMarginContainer" type="MarginContainer" parent="Modal" unique_id=798655910]
 layout_mode = 1
 anchors_preset = 10
@@ -241,29 +265,6 @@ grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_vqhhu")
 texture_pressed = SubResource("AtlasTexture_x6qgw")
 
-[node name="YearPicker" parent="Modal" unique_id=667777001 instance=ExtResource("8_vqhhu")]
-layout_mode = 1
-offset_left = 17.0
-offset_top = 82.0
-offset_right = 17.0
-offset_bottom = 157.0
-date_type = "year"
-
-[node name="MonthPicker" parent="Modal" unique_id=1926736918 instance=ExtResource("8_vqhhu")]
-layout_mode = 1
-offset_left = 125.0
-offset_top = 82.0
-offset_right = 125.0
-offset_bottom = 157.0
-date_type = "month"
-
-[node name="DayPicker" parent="Modal" unique_id=1814054572 instance=ExtResource("8_vqhhu")]
-layout_mode = 1
-offset_left = 233.0
-offset_top = 82.0
-offset_right = 233.0
-offset_bottom = 157.0
-date_type = "day"
-
 [connection signal="pressed" from="Modal/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="toggled" from="Modal/CheckboxMarginContainer/HBoxContainer/Checkbox" to="." method="_on_checkbox_toggled"]
+[connection signal="pressed" from="Modal/SubmitButton" to="." method="_on_submit_button_pressed"]
