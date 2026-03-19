@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b8r44k1jluln4" path="res://Scenes/InvestmentCard/InvestmentCard.gd" id="1_ap64o"]
 [ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_ck5yc"]
-[ext_resource type="LabelSettings" uid="uid://f7nhtsmlouiu" path="res://Assets/LabelSettings/LabelTexture24(03)_blue.tres" id="4_ck5yc"]
+[ext_resource type="FontFile" uid="uid://cw6m0wpmw5dvd" path="res://Assets/Fonts/04B_03__.TTF" id="4_581gk"]
 [ext_resource type="LabelSettings" uid="uid://bhrekk4kqedp6" path="res://Assets/LabelSettings/LabelTexture_12(03)_blue.tres" id="4_vffqt"]
 [ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="5_581gk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vffqt"]
+font = ExtResource("4_581gk")
+font_size = 19
+font_color = Color(0, 0.27416673, 0.47, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vffqt"]
 atlas = ExtResource("5_581gk")
@@ -72,51 +77,51 @@ label_settings = ExtResource("4_vffqt")
 
 [node name="AmountInfoGrid" type="GridContainer" parent="." unique_id=2141143064]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 60.0
-offset_right = 297.0
-offset_bottom = 168.0
+offset_left = 138.0
+offset_top = 72.0
+offset_right = 307.0
+offset_bottom = 180.0
 columns = 2
 
 [node name="AmountLabel" type="Label" parent="AmountInfoGrid" unique_id=802851905]
 layout_mode = 2
 text = "Amount"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="AmountValueLabel" type="Label" parent="AmountInfoGrid" unique_id=732228301]
 layout_mode = 2
 text = "$5000"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="ActualLabel" type="Label" parent="AmountInfoGrid" unique_id=1279259026]
 layout_mode = 2
 text = "Actual"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="ActualValueLabel" type="Label" parent="AmountInfoGrid" unique_id=1131058686]
 layout_mode = 2
 text = "$4980"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="EarnedLabel" type="Label" parent="AmountInfoGrid" unique_id=1729123653]
 layout_mode = 2
 text = "Earned"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="EarnedValueLabel" type="Label" parent="AmountInfoGrid" unique_id=19038309]
 layout_mode = 2
 text = "$33.0"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="FinalLabel" type="Label" parent="AmountInfoGrid" unique_id=44508820]
 layout_mode = 2
 text = "Final"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="FinalValueLabel" type="Label" parent="AmountInfoGrid" unique_id=856824238]
 layout_mode = 2
 text = "$5033"
-label_settings = ExtResource("4_ck5yc")
+label_settings = SubResource("LabelSettings_vffqt")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=898912061]
 layout_mode = 0

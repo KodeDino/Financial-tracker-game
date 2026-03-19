@@ -1,5 +1,7 @@
 extends Control
 
+signal investment_submitted(investment: Investment)
+
 @onready var reinvested_margin_container: MarginContainer = $Modal/ReinvestedMarginContainer
 @onready var modal: NinePatchRect = $Modal
 @onready var radio_button: Control = $Modal/RadioButtonMarginContainer/RadioButton
@@ -43,8 +45,20 @@ func _on_checkbox_toggled(toggled_on: bool) -> void:
 
 
 func _on_cancel_button_pressed() -> void:
+	clear_form()
 	hide()
 	
+
+func clear_form() -> void:
+	var today = Time.get_datetime_dict_from_system()
+	year_picker.set_value(today['year'])
+	month_picker.set_value(today['month'])
+	day_picker.set_value(today['day'])
+	date_dict = { "year": today['year'], "month": today['month'], "day": today['day'] }
+	input_values.clear()
+	radio_button.reset()
+	_on_type_changed('cd')
+
 
 func clear_out_inputs() -> void:
 	amount_face_value_input_field_line_edit.text = ""
@@ -122,5 +136,26 @@ func _on_submit_button_pressed() -> void:
 	if is_checkbox_checked:
 		input_values['reinvested_amount'] = (float(reinvested_input_field_line_edit.text))
 	
-	var merged = date_dict.merged(input_values)
-	print(merged)
+	var start_date = "%04d-%02d-%02d" % [date_dict['year'], date_dict['month'], date_dict['day']]
+
+	var investment = Investment.new()
+	investment.id = str(Time.get_unix_time_from_system())
+	investment.start_date = start_date
+	investment.type = investment_type
+
+	if investment_type == "cd":
+		investment.amount = input_values['amount']
+		investment.rate = input_values['rate']
+	elif investment_type == "tbill":
+		investment.amount = input_values['face_value']
+		investment.actual_cost = input_values['actual_value']
+
+	investment.reinvested_amount = input_values.get('reinvested_amount', 0.0)
+
+	var investments = DataManager.load_investments()
+	investments.append(investment)
+	DataManager.save_investments(investments)
+
+	investment_submitted.emit(investment)
+	clear_form()
+	hide()

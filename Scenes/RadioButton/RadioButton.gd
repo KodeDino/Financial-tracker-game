@@ -21,3 +21,6 @@ func _on_cd_button_toggled(toggled_on: bool) -> void:
 func _on_tbill_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		type_changed.emit('tbill')
+
+func reset() -> void:
+	$HBoxContainer/CDButton.button_pressed = true

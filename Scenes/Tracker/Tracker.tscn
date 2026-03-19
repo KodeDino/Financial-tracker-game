@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://brw1yxlypnj30" path="res://Assets/Sprites/bg.png" id="1_0am6p"]
 [ext_resource type="Script" uid="uid://cqtrfkjku2nc0" path="res://Scenes/Tracker/Tracker.gd" id="1_b72r1"]
-[ext_resource type="PackedScene" uid="uid://bmhpiel1ax4rp" path="res://Scenes/InvestmentCard/InvestmentCard.tscn" id="3_b72r1"]
 [ext_resource type="PackedScene" uid="uid://ditcs0wgmxhhf" path="res://Scenes/Navigator/Navigator.tscn" id="3_m62ni"]
 [ext_resource type="FontFile" uid="uid://cr6021vtdksw0" path="res://Assets/Fonts/04B_30__.TTF" id="4_pgx7y"]
 [ext_resource type="PackedScene" uid="uid://utuccfklkd2b" path="res://Scenes/AddButton/AddButton.tscn" id="5_q86oa"]
@@ -93,18 +92,6 @@ theme_override_constants/margin_bottom = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=364273940]
 layout_mode = 2
 theme_override_constants/separation = 19
-
-[node name="InvestmentCard" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1972282689 instance=ExtResource("3_b72r1")]
-layout_mode = 2
-
-[node name="InvestmentCard2" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=383143013 instance=ExtResource("3_b72r1")]
-layout_mode = 2
-
-[node name="InvestmentCard3" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1260473186 instance=ExtResource("3_b72r1")]
-layout_mode = 2
-
-[node name="InvestmentCard4" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=229428724 instance=ExtResource("3_b72r1")]
-layout_mode = 2
 
 [node name="Popup" parent="." unique_id=841185820 instance=ExtResource("7_5dewh")]
 visible = false
