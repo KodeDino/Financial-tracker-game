@@ -164,7 +164,7 @@ offset_bottom = 16.0
 text = "Face Value ($)"
 label_settings = SubResource("LabelSettings_vqhhu")
 
-[node name="InputField" parent="Modal/FirstInputMarginContainer/VBoxContainer" unique_id=273924191 instance=ExtResource("5_m2hwa")]
+[node name="AmountFaceValueInputField" parent="Modal/FirstInputMarginContainer/VBoxContainer" unique_id=273924191 instance=ExtResource("5_m2hwa")]
 layout_mode = 2
 
 [node name="SecondInputMarginContainer" type="MarginContainer" parent="Modal" unique_id=708896223]
@@ -199,7 +199,7 @@ offset_bottom = 16.0
 text = "Actual Cost ($)"
 label_settings = SubResource("LabelSettings_x6qgw")
 
-[node name="InputField" parent="Modal/SecondInputMarginContainer/VBoxContainer" unique_id=786112328 instance=ExtResource("5_m2hwa")]
+[node name="RateActualCostInputField" parent="Modal/SecondInputMarginContainer/VBoxContainer" unique_id=786112328 instance=ExtResource("5_m2hwa")]
 layout_mode = 2
 
 [node name="CheckboxMarginContainer" type="MarginContainer" parent="Modal" unique_id=940518198]
@@ -246,7 +246,7 @@ layout_mode = 2
 text = "Reinvested Amount ($)"
 label_settings = SubResource("LabelSettings_6vlri")
 
-[node name="InputField" parent="Modal/ReinvestedMarginContainer/VBoxContainer" unique_id=1740680316 instance=ExtResource("5_m2hwa")]
+[node name="ReinvestedInputField" parent="Modal/ReinvestedMarginContainer/VBoxContainer" unique_id=1740680316 instance=ExtResource("5_m2hwa")]
 layout_mode = 2
 
 [node name="SubmitButton" type="TextureButton" parent="Modal" unique_id=1155646073]

@@ -10,10 +10,18 @@ extends Control
 @onready var year_picker: Control = $Modal/YearPicker
 @onready var month_picker: Control = $Modal/MonthPicker
 @onready var day_picker: Control = $Modal/DayPicker
+@onready var amount_face_value_input_field_line_edit: Control = $Modal/FirstInputMarginContainer/VBoxContainer/AmountFaceValueInputField/LineEdit
+@onready var rate_actual_cost_input_field_line_edit: Control = $Modal/SecondInputMarginContainer/VBoxContainer/RateActualCostInputField/LineEdit
+@onready var reinvested_input_field_line_edit: Control = $Modal/ReinvestedMarginContainer/VBoxContainer/ReinvestedInputField/LineEdit
+@onready var checkbox: TextureButton = $Modal/CheckboxMarginContainer/HBoxContainer/Checkbox
+
 
 const OFFSITE_ADJUSTMENT = 40
 
+var investment_type: String = 'cd'
 var date_dict: Dictionary[String, int]
+var input_values: Dictionary[String, float]
+var is_checkbox_checked: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,23 +34,36 @@ func _on_checkbox_toggled(toggled_on: bool) -> void:
 		reinvested_margin_container.show()
 		modal.offset_top -= OFFSITE_ADJUSTMENT 
 		modal.offset_bottom += OFFSITE_ADJUSTMENT
+		is_checkbox_checked = true
 	else:
 		reinvested_margin_container.hide()
 		modal.offset_top += OFFSITE_ADJUSTMENT
 		modal.offset_bottom -= OFFSITE_ADJUSTMENT
+		is_checkbox_checked = false
 
 
 func _on_cancel_button_pressed() -> void:
 	hide()
+	
+
+func clear_out_inputs() -> void:
+	amount_face_value_input_field_line_edit.text = ""
+	rate_actual_cost_input_field_line_edit.text = ""
+	reinvested_input_field_line_edit.text = ""
+	checkbox.button_pressed = false
+	
 
 func _on_type_changed(type: String) -> void:
+	input_values.clear()
+	clear_out_inputs()
 	if type == 'cd':
 		show_hide_cd_labels(true)
 		show_hide_tbill_labels(false)
+		investment_type = 'cd'
 	elif type == 'tbill':
 		show_hide_cd_labels(false)
 		show_hide_tbill_labels(true)
-		
+		investment_type = 'tbill'
 
 func show_hide_cd_labels(show: bool) -> void:
 	if show:
@@ -86,8 +107,20 @@ func get_max_days(year: int, month: int) -> int:
 
 func _is_leap_year(year: int) -> bool:
 	return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+	
 
 func _on_submit_button_pressed() -> void:
 	var max_days = get_max_days(date_dict['year'], date_dict['month'])
 	date_dict['day'] = mini(date_dict['day'], max_days)
-	print("date_dict: ", date_dict)
+	if investment_type == "cd":
+		input_values['amount'] = float(amount_face_value_input_field_line_edit.text)
+		input_values['rate'] = float(rate_actual_cost_input_field_line_edit.text)
+	elif investment_type == "tbill":
+		input_values['face_value'] = float(amount_face_value_input_field_line_edit.text)
+		input_values['actual_value'] = float(rate_actual_cost_input_field_line_edit.text)
+		
+	if is_checkbox_checked:
+		input_values['reinvested_amount'] = (float(reinvested_input_field_line_edit.text))
+	
+	var merged = date_dict.merged(input_values)
+	print(merged)

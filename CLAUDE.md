@@ -4,6 +4,7 @@
 
 - When the user indicates they are done for the day (e.g. "let's wrap up", "I'm done for today", "that's it for today"), automatically update MEMORY.md with the day's progress before ending the session
 - Always note down hiccups, bugs, or unexpected discoveries in the progress entry — these make for richer video content
+- **Do not write implementation code unless explicitly asked.** The user handles the main coding to learn Godot. Instead: explain the approach, describe what needs to be done, and guide with hints or pseudocode when helpful.
 
 ## Project Overview
 
