@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bicbctuv0w084"]
+
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_7pfwf"]
+[ext_resource type="Script" uid="uid://dwo0ukb7mc8su" path="res://Scenes/HistoricalGoalCard/HistoricalGoalCard.gd" id="2_xndsh"]
+[ext_resource type="LabelSettings" uid="uid://f7nhtsmlouiu" path="res://Assets/LabelSettings/LabelTexture24(03)_blue.tres" id="3_xelmg"]
+
+[node name="HistoricalGoalCard" type="NinePatchRect" unique_id=1132362186]
+offset_right = 360.0
+offset_bottom = 124.0
+texture = ExtResource("1_7pfwf")
+patch_margin_left = 96
+patch_margin_top = 67
+patch_margin_right = 78
+patch_margin_bottom = 57
+script = ExtResource("2_xndsh")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=160842995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -26.0
+offset_right = 79.5
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoalNameLabel" type="Label" parent="GridContainer" unique_id=1029292104]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Goal-1"
+label_settings = ExtResource("3_xelmg")
+
+[node name="GoalValueLabel" type="Label" parent="GridContainer" unique_id=562892896]
+layout_mode = 2
+text = "Value: $5000"
+label_settings = ExtResource("3_xelmg")
