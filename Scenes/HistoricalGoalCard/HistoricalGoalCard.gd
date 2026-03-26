@@ -1,8 +1,9 @@
 class_name GoalCard
 extends NinePatchRect
 
-@onready var goal_name_label: Label = $GridContainer/GoalNameLabel
-@onready var goal_value_label: Label = $GridContainer/GoalValueLabel
+@onready var goal_name_label: Label = $MarginContainer/HBoxContainer/GoalNameLabel
+@onready var goal_value_label: Label = $MarginContainer/HBoxContainer/GoalValueLabel
+
 
 var goal_name: String = ''
 var goal_value: float = 0.0

@@ -48,8 +48,8 @@ func setup() -> void:
 	end_date_value_label.text = end_date
 	type_value_label.text = type
 	amount_value_label.text = '$' + str(amount)
-	earned_value_label.text = '$' + str(interest_earned)
-	final_value_label.text = '$' + str(matured_value)
+	earned_value_label.text = '$' + str(snapped(interest_earned, 0.01))
+	final_value_label.text = '$' + str(snapped(matured_value, 0.01))
 
 	if type == "cd":
 		rate_label.show()

@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://d03fjqv2iy40l" path="res://Assets/LabelSettings/LabelTexture_16_blue.tres" id="4_0m5tf"]
 [ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="5_lp6u1"]
 [ext_resource type="LabelSettings" uid="uid://cdvyd5tsl4q8k" path="res://Assets/LabelSettings/LabelTexture_12_blue.tres" id="5_rlami"]
+[ext_resource type="PackedScene" uid="uid://utuccfklkd2b" path="res://Scenes/AddButton/AddButton.tscn" id="7_0m5tf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s2qr"]
 atlas = ExtResource("5_lp6u1")
@@ -28,7 +29,6 @@ offset_left = 24.0
 offset_top = 96.0
 offset_right = 318.0
 offset_bottom = 120.0
-value = 25.0
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1143010943]
 layout_mode = 0
@@ -37,6 +37,19 @@ offset_top = 24.0
 offset_right = 139.0
 offset_bottom = 47.0
 text = "Progress"
+label_settings = ExtResource("4_0m5tf")
+
+[node name="GoalLabel" type="Label" parent="." unique_id=1204259602]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -11.5
+offset_right = 105.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Goal: "
 label_settings = ExtResource("4_0m5tf")
 
 [node name="PercentLabel" type="Label" parent="." unique_id=1547703367]
@@ -48,7 +61,7 @@ offset_bottom = 143.0
 text = "10%"
 label_settings = ExtResource("5_rlami")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=690454483]
+[node name="CancelButton" type="TextureButton" parent="." unique_id=690454483]
 layout_mode = 0
 offset_left = 280.00003
 offset_top = 16.0
@@ -56,3 +69,14 @@ offset_right = 322.00003
 offset_bottom = 58.0
 scale = Vector2(0.7, 0.7)
 texture_normal = SubResource("AtlasTexture_3s2qr")
+
+[node name="AddButton" parent="." unique_id=752557158 instance=ExtResource("7_0m5tf")]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 16.0
+offset_right = 333.0
+offset_bottom = 70.0
+scale = Vector2(0.6, 0.6)
+
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="AddButton" to="." method="_on_add_button_pressed"]

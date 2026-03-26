@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://byfsx14w7oouo"]
+
+[ext_resource type="Script" uid="uid://db31rdh5mk5e0" path="res://Scenes/GoalPopup/GoalPopup.gd" id="1_bjxyr"]
+[ext_resource type="Texture2D" uid="uid://dne8c8kj7rawq" path="res://Assets/Sprites/Card.png" id="1_okt0o"]
+[ext_resource type="Texture2D" uid="uid://cv8cdul30cn3m" path="res://Assets/Sprites/FT_sprites_6x.png" id="2_65ymt"]
+[ext_resource type="LabelSettings" uid="uid://cdvyd5tsl4q8k" path="res://Assets/LabelSettings/LabelTexture_12_blue.tres" id="3_ujw4r"]
+[ext_resource type="PackedScene" uid="uid://b5yxidj5wreim" path="res://Scenes/InputField/InputField.tscn" id="4_bjxyr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pv4c"]
+atlas = ExtResource("2_65ymt")
+region = Rect2(66, 144, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjxyr"]
+atlas = ExtResource("2_65ymt")
+region = Rect2(12, 1440, 150, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fak1d"]
+atlas = ExtResource("2_65ymt")
+region = Rect2(168, 1439, 150, 67)
+
+[node name="GoalPopup" type="Control" unique_id=489205435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjxyr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1827995070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2045364772]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_okt0o")
+patch_margin_left = 104
+patch_margin_top = 60
+patch_margin_right = 66
+patch_margin_bottom = 68
+
+[node name="CancelButton" type="TextureButton" parent="NinePatchRect" unique_id=1548736594]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = -18.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_1pv4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=320018429]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=126771561]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TargetAmountLabel" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=1016155963]
+layout_mode = 2
+text = "Target amount"
+label_settings = ExtResource("3_ujw4r")
+
+[node name="InputField" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=273924191 instance=ExtResource("4_bjxyr")]
+layout_mode = 2
+
+[node name="SubmitButton" type="TextureButton" parent="NinePatchRect" unique_id=1308467889]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.999985
+offset_top = -57.0
+offset_right = 33.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+texture_normal = SubResource("AtlasTexture_bjxyr")
+texture_pressed = SubResource("AtlasTexture_fak1d")
+
+[connection signal="pressed" from="NinePatchRect/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/SubmitButton" to="." method="_on_submit_button_pressed"]

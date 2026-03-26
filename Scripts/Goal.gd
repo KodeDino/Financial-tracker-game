@@ -9,7 +9,7 @@ func to_dict() -> Dictionary:
 	return {
 		"id": id,
 		"target_amount": target_amount,
-		"completed_date": completed_date
+		"completed_date": completed_date,
 	  }
 
 static func from_dict(dict: Dictionary) -> Goal:

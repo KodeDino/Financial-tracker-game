@@ -14,27 +14,26 @@ patch_margin_right = 78
 patch_margin_bottom = 57
 script = ExtResource("2_xndsh")
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=160842995]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=813450584]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.5
-offset_top = -26.0
-offset_right = 79.5
-offset_bottom = 26.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 24
 
-[node name="GoalNameLabel" type="Label" parent="GridContainer" unique_id=1029292104]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1110959662]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="GoalNameLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1029292104]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Goal-1"
 label_settings = ExtResource("3_xelmg")
 
-[node name="GoalValueLabel" type="Label" parent="GridContainer" unique_id=562892896]
+[node name="GoalValueLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=562892896]
 layout_mode = 2
 text = "Value: $5000"
 label_settings = ExtResource("3_xelmg")

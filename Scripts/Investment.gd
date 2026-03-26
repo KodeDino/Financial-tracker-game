@@ -38,17 +38,23 @@ static func from_dict(dict: Dictionary) -> Investment:
 
 func get_interest_earned() -> float:
 	if type == "cd" && rate:
-		return amount * (rate / 100) * (3.0 / 12.0)
+		var start_unix = Time.get_unix_time_from_datetime_string(start_date + "T00:00:00")
+		var end_unix = Time.get_unix_time_from_datetime_string(get_end_date() + "T00:00:00")
+		var days = round((end_unix - start_unix) / 86400.0)
+		return amount * (rate / 100.0) * (days / 365.0)
 	elif type == "tbill" && actual_cost:
 		return amount - actual_cost
 	else:
-		return 0
+		return 0.0
 
 func get_matured_value() -> float:
 	if type == "cd":
 		return amount + get_interest_earned()
 	else:
 		return amount
+
+func get_fresh_principal() -> float:
+	return amount - reinvested_amount
 	
 func get_status() -> bool:
 	var today = Time.get_date_string_from_system(false)

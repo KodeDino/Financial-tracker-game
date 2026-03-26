@@ -1,5 +1,6 @@
 extends Control
 
+
 @onready var v_box_container: VBoxContainer = $ScrollContainer/MarginContainer/VBoxContainer
 @onready var popup: Control = $Popup
 
@@ -36,6 +37,23 @@ func _sort_cards() -> void:
 func _on_investment_submitted(investment: Investment) -> void:
 	v_box_container.add_child(_create_card(investment))
 	_sort_cards()
+	var current_exp = DataManager.load_exp()
+	DataManager.save_exp(current_exp + 50)	
+	var current_goal = DataManager.load_current_goal()
+	if current_goal == null:
+		return
+	var all_investments = DataManager.load_investments()
+	var all_goals = DataManager.load_goals()
+	var progress = InvestmentStats.calculate_goal_progress(all_investments, current_goal)
+	if progress >= 100:
+		var goal = Goal.new()
+		goal.id = str(all_goals.size() + 1)
+		goal.target_amount = current_goal
+		goal.completed_date = Time.get_date_string_from_system(false)
+		all_goals.append(goal)
+		DataManager.save_goals(all_goals)
+		DataManager.save_current_goal(null)
+		DataManager.save_exp(current_exp + 250)
 
 func _on_remove_requested(id: String, is_active: bool) -> void:
 	if is_active:
